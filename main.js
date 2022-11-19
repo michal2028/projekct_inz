@@ -7,17 +7,17 @@ const options = {
 };
 
 fetch('https://footapi7.p.rapidapi.com/api/search/ronaldo', options)
-	.then(response => response.json('info.json'))
+	.then(response => response.json())
 	.then(response => {
         console.log(response)
-        console.log(response[0].enity)
+        const data = response;
 
-
-
+		console.log(data)
+		document.getElementById('testowy').textContent = data;
     })
 	.catch(err => console.error(err));
 
 
-const testowy = document.getElementById('testowy')
+
 
 // testowy.innerText(respons)
