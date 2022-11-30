@@ -1,3 +1,5 @@
+import { renderCountries } from "./functions.js";
+
 const options = {
 	method: 'GET',
 	headers: {
@@ -5,29 +7,71 @@ const options = {
 		'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
 	}
 };
+const country = document.querySelectorAll('.country-list p')
+const countryBody = document.querySelector('.country-body')
 
+
+function removeClass(listSelector){
+	listSelector.forEach(el =>{
+		if(el.classList.contains('p-active')){
+			el.classList.remove('p-active')
+		}
+	})
+}
+
+   function chooseFromList(listSelector){
+
+	listSelector.forEach(el =>{
+		
+		 el.addEventListener('click', () =>{
+			removeClass(listSelector)
+			const resArray = responseCountry(el.textContent);
+			el.classList.add('p-active');
+			console.log()
+			return resArray;
+		})
+	})
+
+}
+// async function run(){
+// 	const arrCountry = chooseFromList(country);
+// 	renderCountryBody(countryBody,arrCountry);
+// }
+
+// async function renderCountryBody(body, arr){
+// 	let listOfCountries = document.createElement('div')
+// 	await arr.forEach(el =>{
+// 		listOfCountries.appendChild('p')
+// 		body.appendChild(listOfCountries)
+// 	})
+// }
+ let countries;
  function responseCountry(query){
-	fetch(`https://api-football-v1.p.rapidapi.com/v3/countries?search=${query}`, options)
+	const responseArray = []
+	fetch(`https://api-football-v1.p.rapidapi.com/v3/leagues?country=${query}`, options)
 	.then(response => response.json())
 	.then(response =>{
-		const list2 = document.getElementById('country-container')
-		list2.innerHTML = "";
 		console.log(response)
-		const listli = document.createElement('ul');
-		// to do funckji
-		response.response.forEach(element => {
-			listli.appendChild(document.createElement('li')).innerHTML = `<p> Country name: ${element.name} </p> <img src=${element.flag}>`;
-		});
-		list2.appendChild(listli)
+	countries =	response.response.map((el) =>{
+			return{
+				country:{
+					name: el.country.name,
+					png: el.country.flag,
+					short: el.country.code
+				},
+				league:{
+					id: el.league.id,
+					png: el.league.logo,
+					name: el.league.name
+				}
+				
+
+			}
+		})
+		renderCountries(countries);
 	} )
 	.catch(err => console.error(err));
 }
 
-const btnCountry = document.getElementById('btnCountry');
 
-btnCountry.addEventListener('click', () =>{
-	const inputData = document.getElementById('inputCountry').value;
-	responseCountry(inputData);
-})
-
-
+responseCountry(chooseFromList(country))

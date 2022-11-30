@@ -4,35 +4,47 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Football API WSB</title>
     <link rel="stylesheet" href="./css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="container">
-      <div class="search-bar">
-        <input type="text" id="inputCountry">
-        <button id="btnCountry">Search</button>
-      </div>
+      <section class="countries">
+        <div class="country-list">
+          <p>Poland</p>
+          <p>England</p>
+          <p>Germany</p>
+          <p>Spain</p>
+        </div>
+        <div class="league-body">
+          <!-- <div class="league-box">
+              <div class="league-box-top">
+                <img src="./250px-Flag_of_Poland_(normative).svg.webp" alt="" >
+                <p>Polska</p>
+              </div>
+              <div class="league-box-mid">
+                <div class="league-box-mid-img">
+                  <img src="./250px-Flag_of_Poland_(normative).svg.webp" alt="">
+                
+                </div>
+                <div class="league-box-mid-text">
+                  <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                
+              </div>
+          </div> -->
+         
+        </div>
+      </section>
       
-      <h1>Countries:</h1>
-      <div id="country-container">
-        <ul id="ul-list"></ul>
-      </div>
-      <section>
-        <!-- liga -->
-      </section>
-      <section>
-        <!-- // tabela -->
-      </section>
-      <section>
-        <!-- //pplayer -->
-
-
-
-
-      </section>
+      <section class="table"></section>
+      <section class="players"></section>
     </div>
-
-    <script src="main.js"></script>
+    <script type="module" src="functions.js"></script>
+    <script  type="module"src="main.js"></script>
+ 
   </body>
 </html>
