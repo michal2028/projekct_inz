@@ -18,12 +18,14 @@ body {
   width: 100%;
   margin: 0 auto;
   max-width: 1200px;
+  min-width: 415px;
 }
 
 .countries {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  min-width: 400px;
 }
 
 .countries .country-list {
@@ -41,6 +43,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  min-width: 125px;
 }
 
 .countries .country-list p {
@@ -50,6 +53,7 @@ body {
   border-radius: 25px;
   -webkit-transition: .2s ease-in-out;
   transition: .2s ease-in-out;
+  cursor: pointer;
 }
 
 .countries .country-list p:hover {
@@ -62,6 +66,7 @@ body {
 
 .league-body {
   margin-top: 3em;
+  margin-bottom: 3em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -75,6 +80,7 @@ body {
           align-items: center;
   width: 100%;
   gap: 1em;
+  min-width: 260px;
 }
 
 .league-body .league-box {
@@ -91,6 +97,7 @@ body {
   border-radius: 10px;
   height: 200px;
   width: 200px;
+  cursor: pointer;
 }
 
 .league-body .league-box .league-box-top {
@@ -151,5 +158,51 @@ body {
 .league-body .league-box .league-box-mid .league-box-mid-text {
   padding: 2em;
   text-align: center;
+}
+
+.league-body .league-box:hover {
+  background-color: azure;
+}
+
+.table {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: .5em;
+}
+
+.table .table-box {
+  width: 70%;
+  background-color: azure;
+  border-radius: 10px;
+}
+
+.table .table-box .table-box-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1em;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.table .table-box .table-box-text img {
+  width: 30px;
+}
+
+.table .table-box .table-box-text .name {
+  width: 300px;
+}
+
+.table .table-box .table-box-text .form {
+  display: inline;
 }
 /*# sourceMappingURL=main.css.map */

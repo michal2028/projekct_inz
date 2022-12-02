@@ -18,11 +18,13 @@ body{
     
     margin: 0 auto;
     max-width: 1200px;
+    min-width:415px;
 }
 
 
 .countries{
     display: flex;
+    min-width:400px;
     .country-body{
         // width: 70%;
     
@@ -34,18 +36,23 @@ body{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    min-width:125px;
     p{
         text-align: center;
         padding: 2em;
         width: 100%;
         border-radius: 25px;
         transition: .2s ease-in-out;
+        cursor: pointer;
 
     }
     p:hover{
         background-color: rgb(231, 241, 241);
     }
 }
+
+
+
 }
 
 .p-active{
@@ -54,12 +61,14 @@ body{
 
 .league-body{
     margin-top: 3em;
+    margin-bottom: 3em;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 100%;
     gap: 1em;
+    min-width:260px;
     .league-box{
        display: flex;
        flex-direction: column; 
@@ -68,6 +77,7 @@ body{
        border-radius: 10px;
        height: 200px;
        width: 200px;
+       cursor: pointer;
         .league-box-top{
             display: flex;
             padding: 10px;
@@ -101,6 +111,39 @@ body{
             .league-box-mid-text{
                 padding: 2em;
                 text-align: center;
+            }
+        }
+    }
+    .league-box:hover{
+        background-color: azure;
+    }
+}
+
+
+.table{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: .5em;
+    .table-box{
+        width: 70%;
+        background-color: azure;
+        border-radius: 10px;
+
+        .table-box-text{
+            display: flex;
+            padding: 1em;
+            justify-content: space-between;
+            img{
+                
+                width: 30px;
+            }
+            .name{
+                width: 300px;
+            }
+
+            .form{
+                display: inline;
             }
         }
     }
