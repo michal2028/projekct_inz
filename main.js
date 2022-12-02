@@ -35,7 +35,7 @@ const createCountryElement = (countries) => {
   body.innerHTML = "";
   let patternAll = "";
 
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < countries.length; i++) {
     let pattern = ` <div data-id=${countries[i].league.id} class="league-box">
 		 <div class="league-box-top">
 		 <img src=${countries[i].country.png} alt=${countries[i].country.name}>
@@ -97,7 +97,7 @@ function createLeagueElement(leagues) {
     let errorMessage = `<div class="error"><p>We can't download this data, sorry</p></div>`;
     body.innerHTML = errorMessage;
   } else {
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < leagues.length; i++) {
       let pattern = `<div data-id=${leagues[i].team_id} class="table-box">
   
       <div class="table-box-text">
@@ -140,6 +140,7 @@ async function responseLeague(query) {
       } else {
         leagues = response.response[0].league.standings[0].map((el) => {
           return {
+            league_id: query,
             rank: el.rank,
             team: el.team.name,
             logo: el.team.logo,
