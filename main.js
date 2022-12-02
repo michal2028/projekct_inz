@@ -89,6 +89,7 @@ function createLeagueElement(leagues) {
   <span class="lose">L</span>
   <span class="goals">B</span>
   <span class="points">P</span>
+  <span class="balance">Balance</span>
   
 </div></div>`;
 
@@ -110,12 +111,7 @@ function createLeagueElement(leagues) {
         <span class="goals">${leagues[i].goalsFor}:${leagues[i].goalsAgainst}</span>
         <span class="points">${leagues[i].points}</span>
         <div class="form">
-          <span class="form1">W</span>
-          <span class="form2">P</span>
-          <span class="form3">W</span>
-          <span class="form4">W</span>
-          <span class="form5">W</span>
-          <span class="form6">W</span>
+          <p>${leagues[i].form}</p>
         </div>
       </div>
   
