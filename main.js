@@ -31,11 +31,13 @@ const createCountryElement = (countries) => {
   console.log(countries);
   const body = document.querySelector(".league-body");
   const leagues = document.querySelector(".table");
+  const players = document.querySelector(".players")
+  players.innerHTML = "";
   leagues.innerHTML = "";
   body.innerHTML = "";
   let patternAll = "";
 
-  for (let i = 0; i < countries.length; i++) {
+  for (let i = 0; i < 4; i++) {
     let pattern = ` <div data-id=${countries[i].league.id} class="league-box">
 		 <div class="league-box-top">
 		 <img src=${countries[i].country.png} alt=${countries[i].country.name}>
@@ -62,9 +64,10 @@ const renderCountries = (country) => {
   createCountryElement(country);
 };
 
-function renderLeague(callback) {
+function renderContent(callback, selectorCss) {
   let choose;
-  const leagues = document.querySelectorAll(".league-box");
+  let leagues = document.querySelectorAll(selectorCss);
+  console.log(leagues);
   leagues.forEach((el) => {
     el.addEventListener("click", function () {
       console.log(el.getAttribute("data-id") + " z listenera");
@@ -97,7 +100,7 @@ function createLeagueElement(leagues) {
     let errorMessage = `<div class="error"><p>We can't download this data, sorry</p></div>`;
     body.innerHTML = errorMessage;
   } else {
-    for (let i = 0; i < leagues.length; i++) {
+    for (let i = 0; i < 4; i++) {
       let pattern = `<div data-id=${leagues[i].team_id} class="table-box">
   
       <div class="table-box-text">
@@ -119,13 +122,12 @@ function createLeagueElement(leagues) {
 
       patternAll = patternAll + pattern;
     }
-  
+
     body.innerHTML = stats + patternAll;
-    
   }
 }
 
-async function responseLeague(query) {
+function responseLeague(query) {
   let leagues = [];
   fetch(
     `https://api-football-v1.p.rapidapi.com/v3/standings?season=2022&league=${query}`,
@@ -157,7 +159,88 @@ async function responseLeague(query) {
         });
         console.log(leagues);
         createLeagueElement(leagues);
+        renderContent(responseTeam, ".table-box");
       }
+    })
+    .catch((err) => console.log(err));
+}
+
+function createElementPlayers(players){
+
+const body = document.querySelector(".players");
+
+let patternAll ="";
+  body.innerHTML = "";
+const playersBox = document.createElement('div');
+playersBox.classList.add('players-box');
+const logoBox = document.createElement('div');
+logoBox.classList.add('players-logo-box');
+let logoSrc =[];
+const teamLogo = document.querySelectorAll('.table-box');
+teamLogo.forEach(el =>{
+
+  if(el.getAttribute("data-id") === players[0].team_id){
+    
+    logoSrc.push(el.querySelector(".table-box-text img").src);
+    logoSrc.push(el.querySelector(".name").innerHTML);
+    // logoSrc.push(el.querySelector(".table-box-text name").innerText);
+  }
+})
+
+
+let logo = `<div class="players-logo-box-text">
+  <img src=${logoSrc[0]} alt=${logoSrc[1]}>
+  <h3>${logoSrc[1]}</h3>
+</div>
+<h4>Squad</h4>`
+
+
+  for(let i =0;i<players.length;i++){
+
+   let pattern = `
+    <div class="player-box">
+      <img src=${players[i].png} alt="">
+      <p class="player-name">${players[i].name}</p>
+      <p class="player-age">${players[i].age}</p>
+      <p class="player-number">${players[i].number}</p>
+      <p class="player-position">${players[i].position}</p>
+    </div>`
+    patternAll = patternAll + pattern;
+  }
+  logoBox.innerHTML = logo;
+  playersBox.innerHTML = patternAll;
+  body.appendChild(logoBox);
+  body.appendChild(playersBox);
+}
+
+
+function responseTeam(query) {
+  
+  let players = [];
+  fetch(
+    `https://api-football-v1.p.rapidapi.com/v3/players/squads?team=${query}`,
+    options
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      (
+        (players = res.response[0].players.map((el) => {
+          if (el.number === null) {
+            el.number = "no data";
+          }
+          return {
+            team_id:query,
+            age: el.age,
+            player_id: el.id,
+            name: el.name,
+            number: el.number,
+            png: el.photo,
+            position: el.position,
+          };
+        }))
+      );
+      console.log(players);
+      createElementPlayers(players)
     })
     .catch((err) => console.log(err));
 }
@@ -187,7 +270,7 @@ function responseCountry(query) {
           };
         });
         renderCountries(countries);
-        renderLeague(responseLeague);
+        renderContent(responseLeague, ".league-box");
       })
 
       .catch((err) => console.error(err));
