@@ -1,3 +1,5 @@
+
+
 const options = {
   method: "GET",
   headers: {
@@ -5,22 +7,25 @@ const options = {
     "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
   },
 };
-const country = document.querySelectorAll(".country-list p");
-const countryBody = document.querySelector(".country-body");
-let countries;
 
-function removeClass(listSelector, cssRule) {
-  listSelector.forEach((el) => {
+
+
+
+
+function removeClass(cssRule) {
+  const country = document.querySelectorAll(".country-list p");
+  country.forEach((el) => {
     if (el.classList.contains(cssRule)) {
       el.classList.remove(cssRule);
     }
   });
 }
 
-function chooseFromList(listSelector) {
-  listSelector.forEach((el) => {
+function chooseFromList() {
+  const country = document.querySelectorAll(".country-list p");
+  country.forEach((el) => {
     el.addEventListener("click", () => {
-      removeClass(listSelector, "p-active");
+      removeClass("p-active");
       const resArray = responseCountry(el.textContent);
       el.classList.add("p-active");
       return resArray;
@@ -31,7 +36,7 @@ const createCountryElement = (countries) => {
   console.log(countries);
   const body = document.querySelector(".league-body");
   const leagues = document.querySelector(".table");
-  const players = document.querySelector(".players")
+  const players = document.querySelector(".players");
   players.innerHTML = "";
   leagues.innerHTML = "";
   body.innerHTML = "";
@@ -169,46 +174,40 @@ function responseLeague(query) {
     .catch((err) => console.log(err));
 }
 
-function createElementPlayers(players){
+function createElementPlayers(players) {
+  const body = document.querySelector(".players");
 
-const body = document.querySelector(".players");
-
-let patternAll ="";
+  let patternAll = "";
   body.innerHTML = "";
-const playersBox = document.createElement('div');
-playersBox.classList.add('players-box');
-const logoBox = document.createElement('div');
-logoBox.classList.add('players-logo-box');
-let logoSrc =[];
-const teamLogo = document.querySelectorAll('.table-box');
-teamLogo.forEach(el =>{
+  const playersBox = document.createElement("div");
+  playersBox.classList.add("players-box");
+  const logoBox = document.createElement("div");
+  logoBox.classList.add("players-logo-box");
+  let logoSrc = [];
+  const teamLogo = document.querySelectorAll(".table-box");
+  teamLogo.forEach((el) => {
+    if (el.getAttribute("data-id") === players[0].team_id) {
+      logoSrc.push(el.querySelector(".table-box-text img").src);
+      logoSrc.push(el.querySelector(".name").innerHTML);
+      // logoSrc.push(el.querySelector(".table-box-text name").innerText);
+    }
+  });
 
-  if(el.getAttribute("data-id") === players[0].team_id){
-    
-    logoSrc.push(el.querySelector(".table-box-text img").src);
-    logoSrc.push(el.querySelector(".name").innerHTML);
-    // logoSrc.push(el.querySelector(".table-box-text name").innerText);
-  }
-})
-
-
-let logo = `<div class="players-logo-box-text">
+  let logo = `<div class="players-logo-box-text">
   <img src=${logoSrc[0]} alt=${logoSrc[1]}>
   <h3>${logoSrc[1]}</h3>
 </div>
-<h4>Squad</h4>`
+<h4>Squad</h4>`;
 
-
-  for(let i =0;i<players.length;i++){
-
-   let pattern = `
+  for (let i = 0; i < players.length; i++) {
+    let pattern = `
     <div class="player-box">
       <img src=${players[i].png} alt="">
       <p class="player-name">${players[i].name}</p>
       <p class="player-age">${players[i].age}</p>
       <p class="player-number">${players[i].number}</p>
       <p class="player-position">${players[i].position}</p>
-    </div>`
+    </div>`;
     patternAll = patternAll + pattern;
   }
   logoBox.innerHTML = logo;
@@ -217,10 +216,7 @@ let logo = `<div class="players-logo-box-text">
   body.appendChild(playersBox);
 }
 
-
-
 function responseTeam(query) {
-  
   let players = [];
   fetch(
     `https://api-football-v1.p.rapidapi.com/v3/players/squads?team=${query}`,
@@ -228,29 +224,28 @@ function responseTeam(query) {
   )
     .then((res) => res.json())
     .then((res) => {
-      (
-        (players = res.response[0].players.map((el) => {
-          if (el.number === null) {
-            el.number = "no data";
-          }
-          return {
-            team_id:query,
-            age: el.age,
-            player_id: el.id,
-            name: el.name,
-            number: el.number,
-            png: el.photo,
-            position: el.position,
-          };
-        }))
-      );
+      players = res.response[0].players.map((el) => {
+        if (el.number === null) {
+          el.number = "no data";
+        }
+        return {
+          team_id: query,
+          age: el.age,
+          player_id: el.id,
+          name: el.name,
+          number: el.number,
+          png: el.photo,
+          position: el.position,
+        };
+      });
       console.log(players);
-      createElementPlayers(players)
+      createElementPlayers(players);
     })
     .catch((err) => console.log(err));
 }
 
 function responseCountry(query) {
+  let countries;
   if (query != undefined) {
     const responseArray = [];
     fetch(
@@ -276,17 +271,10 @@ function responseCountry(query) {
         });
         renderCountries(countries);
         renderContent(responseLeague, ".league-box");
-
-
-
-
-
-
-
       })
 
       .catch((err) => console.error(err));
   }
 }
 
-responseCountry(chooseFromList(country));
+responseCountry(chooseFromList());

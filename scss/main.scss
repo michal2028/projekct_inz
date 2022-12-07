@@ -198,3 +198,24 @@ body{
     }
  
 }
+
+.matches-body{
+    display: flex;
+    flex-direction: column;
+    gap:1em;
+    .match{
+        cursor: pointer;
+        background-color: #fff;
+        .match-top{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5em;
+            .team{
+                img{
+                    width: 100px;
+                }
+            }
+        }
+    }
+}
