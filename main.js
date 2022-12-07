@@ -37,7 +37,7 @@ const createCountryElement = (countries) => {
   body.innerHTML = "";
   let patternAll = "";
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < countries.length; i++) {
     let pattern = ` <div data-id=${countries[i].league.id} class="league-box">
 		 <div class="league-box-top">
 		 <img src=${countries[i].country.png} alt=${countries[i].country.name}>
@@ -60,6 +60,8 @@ const createCountryElement = (countries) => {
 
   body.innerHTML = patternAll;
 };
+
+// wywalic
 const renderCountries = (country) => {
   createCountryElement(country);
 };
@@ -77,6 +79,8 @@ function renderContent(callback, selectorCss) {
   });
 }
 
+// add -> wy
+
 function createLeagueElement(leagues) {
   console.log(leagues);
   const body = document.querySelector(".table");
@@ -88,7 +92,7 @@ function createLeagueElement(leagues) {
   <span class="name">Team</span>
   <span class="matches">M</span>
   <span class="wins">W</span>
-  <span class="remis">D</span>
+  <span class="draw">D</span>
   <span class="lose">L</span>
   <span class="goals">B</span>
   <span class="points">P</span>
@@ -100,7 +104,7 @@ function createLeagueElement(leagues) {
     let errorMessage = `<div class="error"><p>We can't download this data, sorry</p></div>`;
     body.innerHTML = errorMessage;
   } else {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < leagues.length; i++) {
       let pattern = `<div data-id=${leagues[i].team_id} class="table-box">
   
       <div class="table-box-text">
@@ -214,6 +218,7 @@ let logo = `<div class="players-logo-box-text">
 }
 
 
+
 function responseTeam(query) {
   
   let players = [];
@@ -271,6 +276,13 @@ function responseCountry(query) {
         });
         renderCountries(countries);
         renderContent(responseLeague, ".league-box");
+
+
+
+
+
+
+
       })
 
       .catch((err) => console.error(err));
