@@ -289,11 +289,15 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 1em;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 .matches-body .match {
   cursor: pointer;
   background-color: #fff;
+  -webkit-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
 }
 
 .matches-body .match .match-top {
@@ -310,6 +314,22 @@ body {
 }
 
 .matches-body .match .match-top .team img {
-  width: 100px;
+  width: 20px;
+}
+
+.matches-body .match .match-top .winner {
+  color: lime;
+}
+
+.matches-body .match .match-bottom {
+  -webkit-transition: .5s;
+  transition: .5s;
+  display: none;
+}
+
+.matches-body .match .active {
+  -webkit-transition: .5s;
+  transition: .5s;
+  display: block;
 }
 /*# sourceMappingURL=main.css.map */

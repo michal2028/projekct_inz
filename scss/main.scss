@@ -203,9 +203,11 @@ body{
     display: flex;
     flex-direction: column;
     gap:1em;
+    transition: .5s;
     .match{
         cursor: pointer;
         background-color: #fff;
+        transition: .5s ease-in-out;
         .match-top{
             display: flex;
             justify-content: center;
@@ -213,9 +215,22 @@ body{
             gap: 5em;
             .team{
                 img{
-                    width: 100px;
+                    width: 20px;
                 }
             }
+            .winner{
+                color: lime;
+            }
+        }
+
+        .match-bottom{
+            transition: .5s;
+            display: none;
+        }
+        .active{
+            transition: .5s;
+            display: block;
         }
     }
 }
+
