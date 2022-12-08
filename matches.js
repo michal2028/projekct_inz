@@ -18,7 +18,7 @@ function createLiveMatches(table){
  let patternAll = '';
  let isWinner1 = '';
  let isWinner2 ='';
- console.log(table)
+//  console.log(table)
     for(let i =0;i<table.length;i++){
         if(table[i].matchInfo.matchTime === null){
             table[i].matchInfo.matchTime = table[i].matchInfo.status
@@ -74,12 +74,76 @@ function createLiveMatches(table){
     createListenerMatch(table);
 }
 
+function listenerLeaguesList(){
+    const leaguesSelect = document.getElementById('league-select');
+    leaguesSelect.addEventListener('change', e=>{
+        // fetch
+        console.log(leaguesSelect.value)
+        const leaguequery = `https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all&league=${leaguesSelect.value}`
+        responseLiveMatches(leaguequery)
+    })
+
+}
+function generateLeaguesList(leagues){
+    const leaguesSelect = document.getElementById('league-select')
+    let patternAll = '';
+    for(let i =0;i<leagues.length;i++){
+        let pattern = `<option value=${leagues[i].league.id}>${leagues[i].league.name}</option>`
+        patternAll += pattern;
+    }
+    leaguesSelect.innerHTML = patternAll;
+    listenerLeaguesList()
+}
+
+function listLeaguesSelect(country){
+    let countries;
+   
+    fetch(
+        `https://api-football-v1.p.rapidapi.com/v3/leagues?country=${country}`,
+        options
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          
+          countries = response.response.map((el) => {
+            return {
+              league: {
+                id: el.league.id,
+                name: el.league.name,
+              },
+            };
+          });
+          generateLeaguesList(countries)
+
+        })
+        
+}
+
+
+function createSelects(){
+   const selectLeague = document.getElementById('league-select')
+    const selectCountry = document.getElementById('country-select');
+    selectCountry.addEventListener('change', e=>{
+        if(selectCountry.value !== 'no-filter'){
+            selectLeague.disabled = false;
+            listLeaguesSelect(selectCountry.value)
+            
+
+        }else{
+            selectLeague.disabled= true;
+        }
+    })
+
+}
+
+
+
 function createListenerMatch(table){
 const matchComponent = document.querySelectorAll('.match');
     matchComponent.forEach(el=>{
 
         el.addEventListener('click', () =>{
-            console.log(el)
+            // console.log(el)
             localStorage.setItem("data-match",JSON.stringify(table[el.getAttribute("data-id")]))
             el.querySelector('.match-bottom').classList.toggle('active')
         })
@@ -88,11 +152,11 @@ const matchComponent = document.querySelectorAll('.match');
 }
 
 
-function responseLiveMatches(){
+function responseLiveMatches(query ='https://api-football-v1.p.rapidapi.com/v3/fixtures?last=50' ){
    
    
     let liveScores =[]
-    fetch('https://api-football-v1.p.rapidapi.com/v3/fixtures?last=50',options)
+    fetch(query,options)
     .then(res => res.json())
     .then(res =>{
         liveScores = res.response.map(el=>{
@@ -138,8 +202,9 @@ function responseLiveMatches(){
             
 
         })
-        console.log(res)
+        // console.log(res)
         createLiveMatches(liveScores)
+        createSelects()
     })
     .catch(err => console.log(err))
 
