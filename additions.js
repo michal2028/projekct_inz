@@ -6,6 +6,9 @@ function removeClass(cssRule) {
       }
     });
   }
+  function getNormalDate(data){
+    let date = data.substring(0,10) + " " + data.substring(11,16)
+    return date;
+  }
 
-
-export {removeClass}
+export {removeClass,getNormalDate}

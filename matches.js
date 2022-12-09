@@ -1,3 +1,5 @@
+import {getNormalDate} from "./additions.js";
+
 const options = {
     method: "GET",
     headers: {
@@ -7,11 +9,6 @@ const options = {
   };
 
 
-  function getNormalDate(data){
-    let date = data.substring(0,10) + " " + data.substring(11,16)
-    return date;
-  }
-  
 function createLiveMatches(table){
  const body = document.querySelector('.matches-body');
  body.innerHTML = ""
