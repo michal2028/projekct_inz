@@ -10,5 +10,16 @@ function removeClass(cssRule) {
     let date = data.substring(0,10) + " " + data.substring(11,16)
     return date;
   }
+  function dateValidation(date1,date2){
+    
+    let parsedDate1 = new Date(date1)
+    let parsedDate2 = new Date(date2)
+    if(parsedDate1 > parsedDate2){
+      
+      return false;
+    }
 
-export {removeClass,getNormalDate}
+   return true;
+  }
+
+export {removeClass,getNormalDate,dateValidation}

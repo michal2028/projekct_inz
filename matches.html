@@ -14,30 +14,32 @@
         <button><a href="./index.html">Back</a></button>
 
         <div class="filters">
-            <label for="country-select">Choose a country:</label>
-            <select name="country-select" id="country-select">
-               
-                <option value="no-filter" selected>No filter</option>
-                <option value="poland">Poland</option>
-                <option value="germany">Germany</option>
-                <option value="england">England</option>
-                <option value="spain">Spain</option>
+            <form action="">
+                <label for="country-select">Choose a country:</label>
+                <select name="country-select" id="country-select">
+                   
+                    <option value="no-filter" selected>No filter</option>
+                    <option value="poland">Poland</option>
+                    <option value="germany">Germany</option>
+                    <option value="england">England</option>
+                    <option value="spain">Spain</option>
+        
+                </select>
+                <label for="league-select">Choose a league:</label>
+                <select name="league-select" id="league-select" disabled>
+                   
+                    <option value="no-filter" selected>No filter</option>
+                    
+        
+                </select>
+                <label for="date-from">Date from:</label>
+                <input type="date" name="date-from" id="date-from" disabled>
     
-            </select>
-            <label for="league-select">Choose a league:</label>
-            <select name="league-select" id="league-select" disabled>
-               
-                <option value="no-filter" selected>No filter</option>
-                
-    
-            </select>
-            <label for="team-select">Choose a team:</label>
-            <select name="team-select" id="team-select" disabled>
-               
-                <option value="no-filter" selected>No filter</option>
-                
-    
-            </select>
+                <label for="date-to">Date to:</label>
+                <input type="date" name="date-to" id="date-to" disabled>
+                <button type="button" class="form-submit" disabled>Check</button>
+            </form>
+            
         </div>
        
         <h1>Live matches</h1>
