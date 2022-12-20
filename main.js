@@ -1,5 +1,12 @@
-import {removeClass} from "./additions.js";
-import {createCountryElement,renderContent,createLeagueElement,createElementPlayers} from "./render.js"
+import { removeClass, generateError } from "./additions.js";
+import {
+  createCountryElement,
+  renderContent,
+  createLeagueElement,
+  createElementPlayers,
+  choosePlayer,
+  createPlayerStatistics,
+} from "./render.js";
 
 const options = {
   method: "GET",
@@ -8,8 +15,6 @@ const options = {
     "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
   },
 };
-
-
 
 function chooseFromList() {
   const country = document.querySelectorAll(".country-list p");
@@ -22,8 +27,6 @@ function chooseFromList() {
     });
   });
 }
-
-
 
 function responseLeague(query) {
   let leagues = [];
@@ -63,8 +66,6 @@ function responseLeague(query) {
     .catch((err) => console.log(err));
 }
 
-
-
 function responseTeam(query) {
   let players = [];
   fetch(
@@ -89,11 +90,60 @@ function responseTeam(query) {
       });
       console.log(players);
       createElementPlayers(players);
+      choosePlayer(responsePlayer);
     })
     .catch((err) => console.log(err));
 }
 
+function responsePlayer(playerId) {
+  const promise = new Promise((resolve, reject) => {
+    fetch(
+      `https://api-football-v1.p.rapidapi.com/v3/players?id=${playerId}&season=2022`,
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        resolve(response);
+        if (response.response.length === 0 || response.response.length) {
+          reject();
+        }
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+  let playerData = {
+    player: null,
+    statistics: null,
+  };
+  promise
+    .then((res) => {
+      playerData.player = res.response[0].player;
+      playerData.statistics = res.response[0].statistics.map((el) => {
+        for (let key in el) {
+          for (let key2 in el[key]) {
+            if (el[key][key2] === null) {
+              el[key][key2] = "no-data";
+            }
+          }
+        }
+        return {
+          statistics: el,
+        };
+      });
+
+      createPlayerStatistics(playerData);
+    })
+    .catch((err) =>
+      generateError(document.querySelector(".player-stats"), err)
+    );
+}
+
 function responseCountry(query) {
+  document.addEventListener("DOMContentLoaded", () => {
+    responseCountry("poland");
+  });
+
   let countries;
   if (query != undefined) {
     const responseArray = [];
@@ -119,7 +169,7 @@ function responseCountry(query) {
           };
         });
         createCountryElement(countries);
-        
+
         renderContent(responseLeague, ".league-box");
       })
 

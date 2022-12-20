@@ -9,6 +9,7 @@ const options = {
 };
 
 function createLiveMatches(table) {
+  const detailsTable = []
   const body = document.querySelector(".matches-body");
   body.innerHTML = "";
   let patternAll = "";
@@ -16,20 +17,22 @@ function createLiveMatches(table) {
   let isWinner2 = "";
   //  console.log(table)
   for (let i = 0; i < table.length; i++) {
-    if (table[i].matchInfo.matchTime === null) {
+    if (table[i].matchInfo.matchTime === null || table[i].score.home === null || table[i].score.away === null) {
       table[i].matchInfo.matchTime = table[i].matchInfo.status;
       table[i].score.home = "-";
       table[i].score.away = "-";
     }
     if (table[i].matchInfo.status.toLowerCase() === "match finished") {
-      if (table[i].teams.home.winner === true) {
+      if (table[i].score.home === table[i].score.away) {
+        //
+      } else if(table[i].teams.home.winner === true) {
         isWinner1 = `<span class="winner"> Win </span>`;
-      } else {
+      }else{
         isWinner2 = `<span class="winner"> Win </span>`;
       }
     }
 
-    let pattern = ` <div data-id=${i} class="match">
+    let pattern = ` <div data-id=${i} data-fixture=${table[i].matchInfo.fixtureId} class="match">
         <p>${getNormalDate(table[i].matchInfo.data)}</p>
         <div class="match-top">
             <p class="time">${table[i].matchInfo.matchTime}</p>
@@ -48,13 +51,7 @@ function createLiveMatches(table) {
         </div>
         <div class="match-bottom">
 
-                <p>dane1</p>
-                <p>dane2</p>
-                <p>dane2</p>
-                <p>dane2</p>
-                <p>dane2</p>
-                <p>dane2</p>
-                
+            
 
             </div>
        </div>`;
@@ -64,7 +61,7 @@ function createLiveMatches(table) {
     isWinner2 = "";
   }
   body.innerHTML = patternAll;
-  createListenerMatch(table);
+  createListenerMatch(table,detailsTable);
 }
 
 function CountrySelectValue() {
@@ -155,16 +152,41 @@ function generateLeaguesSelect(countryValue, selectOption) {
       inputLeaguesIntoSelect(countries, selectOption);
     });
 }
+function matchDetails(fixture,detailsTable){
+  let detailsMatch ={};
+  fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?id=${fixture}`,options)
+  .then(res => res.json())
+  .then(res =>{
+    
+    console.log(res)
+    detailsTable.push(fixture)
+    detailsMatch = res.response.map(el =>{
+      return{
+        fixture:{
+          city: el.fixture.venue.city,
+          stadion: el.fixture.venue.name
+        },
+        events: el.events,
+        lineups:el.lineups,
+        stats: el.statistics
+      }
+    })
+    console.log(detailsMatch);
+  })
+  .catch(err => console.log(err))
+}
 
-function createListenerMatch(table) {
+function createListenerMatch(table, detailsTable) {
   const matchComponent = document.querySelectorAll(".match");
   matchComponent.forEach((el) => {
     el.addEventListener("click", () => {
-      localStorage.setItem(
-        "data-match",
-        JSON.stringify(table[el.getAttribute("data-id")])
-      );
+      let fixture = el.getAttribute('data-fixture')
+      if(!detailsTable.includes(fixture)){
+        matchDetails(fixture,detailsTable)
+      }
       el.querySelector(".match-bottom").classList.toggle("active");
+      console.log(el)
+      console.log(detailsTable)
     });
   });
 }
@@ -179,6 +201,7 @@ function responseLiveMatches(
       liveScores = res.response.map((el) => {
         return {
           matchInfo: {
+            fixtureId: el.fixture.id,
             data: el.fixture.date,
             id: el.fixture.id,
             matchTime: el.fixture.status.elapsed,
@@ -213,7 +236,7 @@ function responseLiveMatches(
           },
         };
       });
-      // console.log(res)
+      console.log(res)
       createLiveMatches(liveScores.reverse());
     })
     .catch((err) => console.log(err));

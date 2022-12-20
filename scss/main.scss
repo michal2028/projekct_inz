@@ -186,6 +186,7 @@ body{
         overflow: hidden;
         border-radius: 25px;
         .player-box{
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -197,6 +198,9 @@ body{
         }
     }
  
+}
+.player-stats-turnaments{
+    display: flex;
 }
 
 .matches-body{

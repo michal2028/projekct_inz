@@ -1,4 +1,4 @@
-import {getNormalDate} from "./additions.js";
+import { getNormalDate } from "./additions.js";
 // index
 const createCountryElement = (countries) => {
   console.log(countries);
@@ -92,10 +92,13 @@ function createLeagueElement(leagues) {
     }
 
     body.innerHTML = stats + patternAll;
+    body.scrollIntoView({behavior:"smooth"})
   }
+  
 }
 
 function createElementPlayers(players) {
+  console.log(players);
   const body = document.querySelector(".players");
 
   let patternAll = "";
@@ -122,7 +125,7 @@ function createElementPlayers(players) {
 
   for (let i = 0; i < players.length; i++) {
     let pattern = `
-    <div class="player-box">
+    <div class="player-box" data-id=${players[i].player_id}>
       <img src=${players[i].png} alt="">
       <p class="player-name">${players[i].name}</p>
       <p class="player-age">${players[i].age}</p>
@@ -135,10 +138,97 @@ function createElementPlayers(players) {
   playersBox.innerHTML = patternAll;
   body.appendChild(logoBox);
   body.appendChild(playersBox);
+  body.scrollIntoView({behavior:"smooth"})
+}
+
+function createPlayerStatistics(players) {
+  console.log(players);
+  const body = document.querySelector(".player-stats");
+  body.innerHTML = "";
+  let documentBody = "";
+  let tournamentInfo = "";
+  let patternInfo = ` <img src=${players.player.photo} alt="photo ${players.player.name}" class="player-stats-image">
+  <div class="player-stats-info">
+    <p class="name">name: ${players.player.name}</p>
+    <p class="age">age: ${players.player.age}</p>
+    <p class="height">height: ${players.player.height}</p>
+    <p class="weight">weight: ${players.player.weight}</p>
+    <p class="birth">birth: ${players.player.birth.country}, ${players.player.birth.date}, ${players.player.birth.place}</p>
+    <p class="nationality">nationality: ${players.player.nationality}</p>
+  </div>`;
+
+  for (let i = 0; i < players.statistics.length; i++) {
+    let tournamentPattern = `<div class="player-stats-turnaments">
+    <div class="league">
+        <p class="name">league-name: ${players.statistics[i].statistics.league.name}</p>
+        <img  class="logo"src= ${players.statistics[i].statistics.league.logo} alt= ${players.statistics[i].statistics.league.name}>
+        <p class="season">season:  ${players.statistics[i].statistics.league.season}</p>
+    </div>
+    <div class="team">
+      <p class="name">team name: ${players.statistics[i].statistics.team.name}</p>
+      <img class ="logo" src= ${players.statistics[i].statistics.team.logo} alt= ${players.statistics[i].statistics.name}>
+    </div>
+  
+     <div class="cards">
+        <p class="yellow">yellow cards:  ${players.statistics[i].statistics.cards.yellow}</p>
+        <p class="red">red cards:  ${players.statistics[i].statistics.cards.red}</p>
+     </div>
+     <div class="duels">
+        <p class="total"> duels total:  ${players.statistics[i].statistics.duels.total}</p>
+        <p class="won">duels won: ${players.statistics[i].statistics.duels.won}</p>
+     </div>
+     <div class="fouls">
+        <p class="drawn">fouls drawn: ${players.statistics[i].statistics.fouls.drawn}</p>
+        <p class="commited">fouls committed: ${players.statistics[i].statistics.fouls.committed}</p>
+     </div>
+     <div class="games">
+        <p class="appearences"> games appearences: ${players.statistics[i].statistics.games.appearences}</p>
+        <p class="lineups">lineups: ${players.statistics[i].statistics.games.lineups}</p>
+        <p class"minutes">minutes: ${players.statistics[i].statistics.games.minutes}</p>
+        <p class="position">position: ${players.statistics[i].statistics.games.position}</p>
+        <p class="rating">rating: ${players.statistics[i].statistics.games.rating}</p>
+     </div>
+     <div class="goals">
+        <p class="total">goals total: ${players.statistics[i].statistics.goals.total}</p>
+        <p class="assists">assists: ${players.statistics[i].statistics.goals.assists}</p>
+     </div>
+     <div class="passes">
+      <p class="total">passes total: ${players.statistics[i].statistics.passes.total}</p>
+      <p class="key">passes key: ${players.statistics[i].statistics.passes.key}</p>
+      <p class="accuracy">accuracy: ${players.statistics[i].statistics.passes.accuracy}</p>
+     </div>
+     <div class="shots">
+        <p class="total">total shots: ${players.statistics[i].statistics.shots.total}</p>
+        <p class="on">on: ${players.statistics[i].statistics.shots.on}</p>
+     </div>
+  
+  </div>`;
+
+    tournamentInfo = tournamentInfo + tournamentPattern;
+  }
+
+  documentBody = patternInfo + tournamentInfo;
+  body.innerHTML = documentBody;
+  body.scrollIntoView({behavior:"smooth"})
 }
 
 // matches
 
+function choosePlayer(callback) {
+  const body = document.querySelectorAll(".player-box");
 
+  body.forEach((el) => {
+    el.addEventListener("click", () => {
+      callback(el.getAttribute("data-id"));
+    });
+  });
+}
 
-export {createCountryElement,renderContent,createLeagueElement, createElementPlayers}
+export {
+  createCountryElement,
+  renderContent,
+  createLeagueElement,
+  createElementPlayers,
+  choosePlayer,
+  createPlayerStatistics,
+};

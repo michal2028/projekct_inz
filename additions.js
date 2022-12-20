@@ -22,4 +22,11 @@ function removeClass(cssRule) {
    return true;
   }
 
-export {removeClass,getNormalDate,dateValidation}
+function generateError(section, error="can't load data, sorry"){
+  let errorMessage = `<p class="error-message">${error}</p>`;
+  section.innerHTML = "";
+  section.innerHTML = errorMessage;
+
+}
+
+export {removeClass,getNormalDate,dateValidation,generateError}
