@@ -67,6 +67,7 @@ function createLeagueElement(leagues) {
     body.innerHTML = errorMessage;
   } else {
     for (let i = 0; i < leagues.length; i++) {
+      let form = generateFormHTML(leagues[i].form)
       let pattern = `<div data-id=${leagues[i].team_id} class="table-box">
   
       <div class="table-box-text">
@@ -80,7 +81,7 @@ function createLeagueElement(leagues) {
         <span class="goals">${leagues[i].goalsFor}:${leagues[i].goalsAgainst}</span>
         <span class="points">${leagues[i].points}</span>
         <div class="form">
-          <p>${leagues[i].form}</p>
+          ${form}
         </div>
       </div>
   
@@ -92,6 +93,26 @@ function createLeagueElement(leagues) {
     body.innerHTML = stats + patternAll;
     body.scrollIntoView({behavior:"smooth"})
   }
+  
+}
+
+function generateFormHTML(formString){
+  
+
+  let arr = formString.split('');
+  for(let i =0;i<arr.length;i++){
+    if(arr[i] === "W"){
+      arr[i] = `<span class="form-win">${arr[i]}</span>`
+    }
+    if(arr[i] === "D"){
+      arr[i] =`<span class="form-remis">${arr[i]}</span>`
+    }
+    if(arr[i] === "L"){
+      arr[i] = `<span class="form-lose">${arr[i]}</span>`
+    }
+  }
+    return arr.join('');
+  
   
 }
 

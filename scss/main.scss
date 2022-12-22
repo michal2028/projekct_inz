@@ -1,5 +1,6 @@
 @import "colors";
 @import "small";
+
 *,
 *::after,
 *::before {
@@ -16,7 +17,33 @@ body {
     position: relative;
   background-color: $bg-color;
 }
-
+.matches-link{
+    position: fixed;
+    right: 0;
+    top: 150px;
+    text-decoration: none;
+    width: 50px;
+    background-color: rgb(209, 86, 86);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: .2em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: width .3s;
+    img{
+        width: 40px;
+        height: 40px;
+        --animate-duration: 2s;
+    }
+    span{
+        color: #fff;
+        margin-left: 7px;
+    }
+}
+.matches-link:hover{
+    width: 120px;
+}
 .container {
   width: 100%;
   margin: 0 auto;
@@ -25,7 +52,7 @@ body {
   display: flex;
 }
 
-header {
+.logo{
   display: flex;
   margin-right: 3em;
   h1 {
@@ -133,36 +160,82 @@ width: 30%;
 }
 
 .table {
-    margin-top: 1em;
+    
   display: flex;
- 
+ padding: 1em;
   flex-direction: column;
   align-items: space-between;
   gap: 0.5em;
   width: 100%;
   .table-box {
+  
     width: 100%;
     background-color: $main-color;
     border-radius: 10px;
 
     .table-box-text {
-      display: flex;
+        display: grid;
+    grid-template-columns: repeat(12,1fr);
       padding: 1em;
-      justify-content: space-between;
+      text-align: center;
       color: $font-color;
       img {
+        grid-column: 2/3;
         width: 30px;
       }
+      .lp{
+        grid-column: 1/2;
+      }
       .name {
+        grid-column: 3/4;
         cursor: pointer;
-        width: 300px;
+        width: 200px;
       }
       .name:hover {
         text-decoration-line: underline;
       }
+      .matches{
+        grid-column: 4/5;
+      }
+      .wins{
+        grid-column: 5/6;
+      }
+      .remis{
+        grid-column: 6/7;
+      }
+      .lose{
+        grid-column: 7/8;
+      }
+      .goals{
+        grid-column: 8/9;
+      }
+      .points{
+        grid-column: 9/10;
+      }
 
       .form {
+        grid-column: 10/12;
         display: inline;
+        color:#fff;
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+        span{
+            margin-right: 5px;
+            padding: .2em;
+            border-radius: 5px;
+        }
+        .form-win{
+            border-radius: 5px;
+            background-color: rgb(57, 105, 57);
+            padding: .2em;
+        }
+        .form-remis{
+            background-color: rgb(43, 49, 119);
+        }
+        .form-lose{
+            background-color: rgb(164, 48, 48)
+        }
       }
     }
   }
@@ -253,6 +326,8 @@ width: 30%;
   }
 }
 
-@media (max-width:768px) {
-
+@media screen and (max-width:990px) {
+    .container{
+        flex-direction: column;
+    }
 }

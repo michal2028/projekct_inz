@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/michal2028/projekct_inz/issues"
   },
-  "homepage": "https://github.com/michal2028/projekct_inz#readme"
+  "homepage": "https://github.com/michal2028/projekct_inz#readme",
+  "dependencies": {
+    "animate.css": "^4.1.1"
+  }
 }

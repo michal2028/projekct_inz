@@ -29,4 +29,6 @@ function generateError(section, error="can't load data, sorry"){
 
 }
 
+
+
 export {removeClass,getNormalDate,dateValidation,generateError}
