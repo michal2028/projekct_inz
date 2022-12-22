@@ -12,18 +12,16 @@ const createCountryElement = (countries) => {
 
   for (let i = 0; i < countries.length; i++) {
     let pattern = ` <div data-id=${countries[i].league.id} class="league-box">
-		 <div class="league-box-top">
-		 <img src=${countries[i].country.png} alt=${countries[i].country.name}>
-		   <p>${countries[i].country.name}</p>
-		 </div>
+		
 		 <div class="league-box-mid">
+     
 		   <div class="league-box-mid-img">
 			 <img src=${countries[i].league.png} alt=${countries[i].league.name} >
+		   <p>${countries[i].league.name}</p>
+		   </div>
 		   
-		   </div>
-		   <div class="league-box-mid-text">
-			 <p>${countries[i].league.name}</p>
-		   </div>
+			 
+		   
 		   
 		 </div>
 	 </div>`;

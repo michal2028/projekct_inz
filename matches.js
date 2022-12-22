@@ -51,8 +51,6 @@ function createLiveMatches(table) {
         </div>
         <div class="match-bottom">
 
-            
-
             </div>
        </div>`;
 

@@ -1,240 +1,258 @@
-*, *::after, *::before{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+@import "colors";
+@import "small";
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 // liga player tablea
-html{
-    font-family: 'Roboto', sans-serif;
-    font-size: 62,5%;
+html {
+  font-family: "Roboto", sans-serif;
+  font-size: 62, 5%;
 }
-body{
-    background-color: rgb(217, 219, 220);
+body {
+    position: relative;
+  background-color: $bg-color;
 }
 
-.container{
+.container {
+  width: 100%;
+  margin: 0 auto;
+//   max-width: 1200px;
+  min-width: 415px;
+  display: flex;
+}
+
+header {
+  display: flex;
+  margin-right: 3em;
+  h1 {
+    color: $font-color;
+    font-size: 25px;
+  }
+  img {
+    height: 50px;
+    width: 50px;
+  }
+}
+.country-list {
+  width: 100%;
+  background-color: $main-color;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-width: 125px;
+  padding: 1em;
+
+  p {
+    position: relative;
+    text-align: center;
+    font-size: 1rem;
+    padding: 0.5em;
     width: 100%;
-     
-    
-    margin: 0 auto;
-    max-width: 1200px;
-    min-width:415px;
+    border-radius: 25px;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+    color: $font-color;
+  }
+
+  p:hover {
+    display: block;
+    color: $active-color;
+  }
 }
 
-
-.countries{
-    display: flex;
-    min-width:400px;
-  
-    
-.country-list{
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    min-width:125px;
-    p{
-        text-align: center;
-        padding: 2em;
-        width: 100%;
-        border-radius: 25px;
-        transition: .2s ease-in-out;
-        cursor: pointer;
-
-    }
-    p:hover{
-        background-color: rgb(231, 241, 241);
-    }
+.p-active {
+  position: relative;
+  border: 2px solid $active-color;
+  p{
+    color: $active-color;
+  }
 }
 
-
-
+.countries {
+  display: flex;
+//   min-width: 400px;
+width: 30%;
 }
 
-.p-active{
-    background-color: rgb(231, 241, 241);
-}
-
-.league-body{
-    margin-top: 3em;
-    margin-bottom: 3em;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 1em;
-    min-width:260px;
-    .league-box{
-       display: flex;
-       flex-direction: column; 
-       box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
-       background-color: rgb(231, 241, 241);
-       border-radius: 10px;
-       height: 200px;
-       width: 200px;
-       cursor: pointer;
-        .league-box-top{
-            display: flex;
-            padding: 10px;
-            img{
-                height: 50px;
-                width: 50px;
-                border-radius: 10px;
-            }
-            p{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                width: 100%;
-            }
-        }
-
-        .league-box-mid{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            .league-box-mid-img{
-                display: flex;
-                justify-content: center;
-                img{
-                    border-radius: 10px;
-                    width: 50px;
-                    height: 50px;
-                }
-            }
-            .league-box-mid-text{
-                padding: 2em;
-                text-align: center;
-            }
-        }
-    }
-    .league-box:hover{
-        background-color: azure;
-    }
-}
-
-
-.table{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: .5em;
-    .table-box{
-        width: 70%;
-        background-color: azure;
-        border-radius: 10px;
-
-        .table-box-text{
-            display: flex;
-            padding: 1em;
-            justify-content: space-between;
-            img{
-                
-                width: 30px;
-            }
-            .name{
-                cursor: pointer;
-                width: 300px;
-            }
-            .name:hover{
-                text-decoration-line:underline ;
-            }
-
-            .form{
-                display: inline;
-            }
-        }
-    }
-
-
-}
-
-.players{
-   margin:2em 0;
-    display: flex;
-    flex-direction: column;
-    padding: 1em;
-    .players-logo-box{
-        margin:1em 0;
-        background-color: azure;
-        border-radius: 25px;
-        .players-logo-box-text{
-            display: flex;
-            padding: 1em;
-            align-items: center;
-            h3{
-                margin-left: 1em;
-                font-size: 1.5rem;
-            }
-            img{
-                border-radius: 25px;
-                width: 200px;
-            }
-        }
-        h4{
-            border-top: 1px solid rgb(221, 221, 221);
-            padding: 1em;
-            text-align: center;
-            font-size: 1.3rem;
-        }
-    }
-
-    .players-box{
-        overflow: hidden;
-        border-radius: 25px;
-        .player-box{
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1em;
-            background-color: azure;
-            img{
-                width: 50px;
-            }
-        }
-    }
+.league-body {
  
-}
-.player-stats-turnaments{
+  margin:  1em 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+  width: 100%;
+  color: $font-color;
+  .league-box {
     display: flex;
-}
+    background-color: $main-color;
 
-.matches-body{
-    display: flex;
-    flex-direction: column;
-    gap:1em;
-    transition: .5s;
-    .match{
-        cursor: pointer;
-        background-color: #fff;
-        transition: .5s ease-in-out;
-        .match-top{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 5em;
-            .team{
-                img{
-                    width: 20px;
-                }
-            }
-            .winner{
-                color: lime;
-            }
-        }
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+   
 
-        .match-bottom{
-            transition: .5s;
-            display: none;
+    .league-box-mid {
+      display: flex;
+      padding: 10px;
+      width: 100%;
+      .league-box-mid-img {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        img {
+          border-radius: 10px;
+          width:40px;
+          height: 40px;
+          margin-right: 1em;
         }
-        .active{
-            transition: .5s;
-            display: block;
+        p{
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-right: 20px;
         }
+      }
+    
     }
+  }
+  .league-box:hover {
+    background-color:$font-color;
+    color: $main-color;
+  }
 }
 
+.table {
+    margin-top: 1em;
+  display: flex;
+ 
+  flex-direction: column;
+  align-items: space-between;
+  gap: 0.5em;
+  width: 100%;
+  .table-box {
+    width: 100%;
+    background-color: $main-color;
+    border-radius: 10px;
+
+    .table-box-text {
+      display: flex;
+      padding: 1em;
+      justify-content: space-between;
+      color: $font-color;
+      img {
+        width: 30px;
+      }
+      .name {
+        cursor: pointer;
+        width: 300px;
+      }
+      .name:hover {
+        text-decoration-line: underline;
+      }
+
+      .form {
+        display: inline;
+      }
+    }
+  }
+}
+
+.players {
+  margin: 2em 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  .players-logo-box {
+    margin: 1em 0;
+    background-color: azure;
+    border-radius: 25px;
+    .players-logo-box-text {
+      display: flex;
+      padding: 1em;
+      align-items: center;
+      h3 {
+        margin-left: 1em;
+        font-size: 1.5rem;
+      }
+      img {
+        border-radius: 25px;
+        width: 200px;
+      }
+    }
+    h4 {
+      border-top: 1px solid rgb(221, 221, 221);
+      padding: 1em;
+      text-align: center;
+      font-size: 1.3rem;
+    }
+  }
+
+  .players-box {
+    overflow: hidden;
+    border-radius: 25px;
+    .player-box {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em;
+      background-color: azure;
+      img {
+        width: 50px;
+      }
+    }
+  }
+}
+.player-stats-turnaments {
+  display: flex;
+}
+
+.matches-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  transition: 0.5s;
+  .match {
+    cursor: pointer;
+    background-color: #fff;
+    transition: 0.5s ease-in-out;
+    .match-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5em;
+      .team {
+        img {
+          width: 20px;
+        }
+      }
+      .winner {
+        color: lime;
+      }
+    }
+
+    .match-bottom {
+      transition: 0.5s;
+      display: none;
+    }
+    .active {
+      transition: 0.5s;
+      display: block;
+    }
+  }
+}
+
+@media (max-width:768px) {
+
+}

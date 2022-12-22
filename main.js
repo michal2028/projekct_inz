@@ -119,6 +119,7 @@ function responsePlayer(playerId) {
   promise
     .then((res) => {
       playerData.player = res.response[0].player;
+      
       playerData.statistics = res.response[0].statistics.map((el) => {
         for (let key in el) {
           for (let key2 in el[key]) {
