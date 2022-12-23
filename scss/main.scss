@@ -1,5 +1,5 @@
 @import "colors";
-@import "small";
+@import 'small';
 
 *,
 *::after,
@@ -14,45 +14,45 @@ html {
   font-size: 62, 5%;
 }
 body {
-    position: relative;
+  position: relative;
   background-color: $bg-color;
 }
-.matches-link{
-    position: fixed;
-    right: 0;
-    top: 150px;
-    text-decoration: none;
-    width: 50px;
-    background-color: rgb(209, 86, 86);
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    padding: .2em;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    transition: width .3s;
-    img{
-        width: 40px;
-        height: 40px;
-        --animate-duration: 2s;
-    }
-    span{
-        color: #fff;
-        margin-left: 7px;
-    }
+.matches-link {
+  position: fixed;
+  right: 0;
+  top: 150px;
+  text-decoration: none;
+  width: 50px;
+  background-color: rgb(209, 86, 86);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding: 0.2em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transition: width 0.3s;
+  img {
+    width: 40px;
+    height: 40px;
+    --animate-duration: 2s;
+  }
+  span {
+    color: #fff;
+    margin-left: 7px;
+  }
 }
-.matches-link:hover{
-    width: 120px;
+.matches-link:hover {
+  width: 120px;
 }
 .container {
   width: 100%;
   margin: 0 auto;
-//   max-width: 1200px;
-  min-width: 415px;
+  //   max-width: 1200px;
+  
   display: flex;
 }
 
-.logo{
+.logo {
   display: flex;
   margin-right: 3em;
   h1 {
@@ -95,20 +95,19 @@ body {
 .p-active {
   position: relative;
   border: 2px solid $active-color;
-  p{
+  p {
     color: $active-color;
   }
 }
 
 .countries {
   display: flex;
-//   min-width: 400px;
-width: 30%;
+  //   min-width: 400px;
+  width: 30%;
 }
 
 .league-body {
- 
-  margin:  1em 0;
+  margin: 1em 0;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -125,7 +124,6 @@ width: 30%;
     height: 50px;
     width: 100%;
     cursor: pointer;
-   
 
     .league-box-mid {
       display: flex;
@@ -139,51 +137,50 @@ width: 30%;
         flex-direction: row;
         img {
           border-radius: 10px;
-          width:40px;
+          width: 40px;
           height: 40px;
           margin-right: 1em;
         }
-        p{
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            margin-right: 20px;
+        p {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          margin-right: 20px;
         }
       }
-    
     }
   }
   .league-box:hover {
-    background-color:$font-color;
+    background-color: $font-color;
     color: $main-color;
   }
 }
 
 .table {
-    
   display: flex;
- padding: 1em;
+  padding: 1em;
   flex-direction: column;
   align-items: space-between;
   gap: 0.5em;
   width: 100%;
+
   .table-box {
-  
     width: 100%;
     background-color: $main-color;
     border-radius: 10px;
 
     .table-box-text {
-        display: grid;
-    grid-template-columns: repeat(12,1fr);
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
       padding: 1em;
       text-align: center;
+
       color: $font-color;
       img {
         grid-column: 2/3;
         width: 30px;
       }
-      .lp{
+      .lp {
         grid-column: 1/2;
       }
       .name {
@@ -194,77 +191,108 @@ width: 30%;
       .name:hover {
         text-decoration-line: underline;
       }
-      .matches{
+      .matches {
         grid-column: 4/5;
       }
-      .wins{
+      .wins {
         grid-column: 5/6;
       }
-      .remis{
+      .remis {
         grid-column: 6/7;
       }
-      .lose{
+      .lose {
         grid-column: 7/8;
       }
-      .goals{
+      .goals {
         grid-column: 8/9;
       }
-      .points{
+      .points {
         grid-column: 9/10;
+      }
+      .balance {
+        grid-column: 10/-1;
       }
 
       .form {
-        grid-column: 10/12;
+        grid-column: 10/-1;
         display: inline;
-        color:#fff;
+        color: #fff;
         text-align: center;
         justify-content: center;
         width: 100%;
-        span{
-            margin-right: 5px;
-            padding: .2em;
-            border-radius: 5px;
+        span {
+          margin-right: 5px;
+          padding: 0.2em;
+          border-radius: 5px;
         }
-        .form-win{
-            border-radius: 5px;
-            background-color: rgb(57, 105, 57);
-            padding: .2em;
+        .form-win {
+          border-radius: 5px;
+          background-color: rgb(57, 105, 57);
+          padding: 0.2em;
         }
-        .form-remis{
-            background-color: rgb(43, 49, 119);
+        .form-remis {
+          background-color: rgb(43, 49, 119);
         }
-        .form-lose{
-            background-color: rgb(164, 48, 48)
+        .form-lose {
+          background-color: rgb(164, 48, 48);
         }
       }
+    }
+  }
+  .table-box:first-child {
+    background-color: $font-color;
+
+    .name {
+      grid-column: 3/4;
+      cursor: default;
+      width: 200px;
+    }
+    .name:hover {
+      text-decoration-line: none;
+    }
+    .table-box-text {
+      color: $main-color;
+    }
+  }
+  .table-box:hover {
+    background-color: $font-color;
+    .table-box-text {
+      color: $main-color;
     }
   }
 }
 
 .players {
-  margin: 2em 0;
+  margin: 2em auto;
+  max-width: 1400px;
+
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 1em;
+  color: $font-color;
+
   .players-logo-box {
-    margin: 1em 0;
-    background-color: azure;
+    margin: 0 1em;
+    background-color: $main-color;
     border-radius: 25px;
+    width: 20%;
     .players-logo-box-text {
       display: flex;
       padding: 1em;
+      flex-direction: column;
       align-items: center;
-      h3 {
-        margin-left: 1em;
-        font-size: 1.5rem;
-      }
+      justify-content: center;
+      gap: 1em;
       img {
         border-radius: 25px;
-        width: 200px;
+        width: 100px;
+      }
+      h3 {
+        text-align: center;
+        font-size: 1.5rem;
       }
     }
     h4 {
-      border-top: 1px solid rgb(221, 221, 221);
       padding: 1em;
       text-align: center;
       font-size: 1.3rem;
@@ -274,60 +302,269 @@ width: 30%;
   .players-box {
     overflow: hidden;
     border-radius: 25px;
+    width: 80%;
+    .top {
+      background-color: $font-color;
+    }
     .player-box {
       cursor: pointer;
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
       justify-content: space-between;
       align-items: center;
       padding: 1em;
-      background-color: azure;
+      background-color: $main-color;
+      text-align: center;
       img {
-        width: 50px;
+        width: 30px;
       }
-    }
-  }
-}
-.player-stats-turnaments {
-  display: flex;
-}
-
-.matches-body {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  transition: 0.5s;
-  .match {
-    cursor: pointer;
-    background-color: #fff;
-    transition: 0.5s ease-in-out;
-    .match-top {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5em;
-      .team {
+      p {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        align-items: center;
+        justify-content: center;
         img {
-          width: 20px;
+          margin-top: 1em;
         }
       }
-      .winner {
-        color: lime;
+      .photos {
+        grid-column: 1/3;
+        .first {
+          width: 40px;
+        }
+        .second {
+          width: 50px;
+          border-radius: 15px;
+        }
+      }
+      .player-name {
+        grid-column: 3/4;
+      }
+      .player-age {
+        grid-column: 4/5;
+      }
+      .player-number {
+        grid-column: 5/6;
+      }
+      .player-position {
+        grid-column: 6/-1;
       }
     }
-
-    .match-bottom {
-      transition: 0.5s;
-      display: none;
+    .player-box:first-child {
+      background-color: $font-color;
+      color: $main-color;
+      cursor: default;
     }
-    .active {
-      transition: 0.5s;
-      display: block;
+    .player-box:hover {
+      background-color: $font-color;
+      color: $main-color;
     }
   }
 }
 
-@media screen and (max-width:990px) {
-    .container{
-        flex-direction: column;
+.player-stats {
+  color: $font-color;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1200px;
+  .player-stats-info {
+    display: flex;
+    flex-direction: row;
+    background-color: $main-color;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5em;
+    border-radius: 15px;
+    img {
+      border-radius: 15px;
+      width: 220px;
+      // margin-bottom: 1em;
+      margin-right: 2em;
     }
+
+    .player-stats-attributes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      background-color: $font-color;
+      color: $main-color;
+      border-radius: 15px;
+      padding: 1em;
+      p{
+      
+        padding: .5em;
+      }
+      span {
+     
+        display: block;
+        text-align: end;
+        margin-right: 1em;
+        padding: .5em;
+      }
+     
+     
+    }
+  }
+  .player-stats-turnaments {
+    display: flex;
+    background-color: $main-color;
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 1em;
+    margin-top: 1em;
+    align-items: center;
+    .season{
+      text-align: center;
+      padding: 1em;
+      font-size: 25px;
+      text-transform: uppercase;
+    }
+    .turnaments-top{
+      display: flex;  
+      justify-content: center;
+      gap: 2em;
+      .league,.team{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        img{
+          width: 100px;
+          margin: 0 auto;
+        }
+      }
+      .name{
+        padding: 1em;
+        text-align: center;
+        font-size: 20px;
+      }
+    }
+    .turnaments-mid{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: $font-color;
+      color:$main-color;
+      width: 50%;
+      padding: 1.5em;
+      border-radius: 15px;
+      span{
+        display: block;
+        text-align: center;
+      }
+      p{
+        text-align: center;
+      }
+      .turnaments-box{
+        margin: .5em;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .3em;
+        h5{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          grid-column: 1/-1;
+          text-align: center;
+          margin-bottom: .5em;
+          img{
+            width: 20px;
+            margin-right: .2em;
+          }
+        }
+        .rating, .position{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img{
+            margin-left: .5em;
+            width: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+@media screen and (max-width: 990px) {
+
+  .container {
+    flex-direction: column;
+    
+  }
+  nav{
+    .country-list{
+      flex-direction: column;
+    }
+  }
+  .countries{
+    width: 100%;
+    .league-body{
+      .league-box{
+        .league-box-mid{
+          .league-box-mid-img{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            img{
+              margin: 0 auto;
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+
+  .table{
+    .table-box{
+      
+      .table-box-text{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       .form,.matches,.wins,.remis,.lose,.goals,.points{
+        display: none;
+       }
+
+      }
+     
+    }
+  }
+  .table-box:nth-child(1){
+    display: none;
+  }
+  .players{
+    flex-direction: column;
+    .players-logo-box{
+      width: 100%;
+      margin: 0;
+    }
+    .players-box{
+      margin-top: 1.5em;
+      width: 100%;
+    }
+    
+  }
+  .player-stats{
+    .player-stats-info{
+      flex-direction: column;
+      .player-stats-image{
+        margin: 0 auto;
+      }
+    }
+    .player-stats-turnaments{
+      .turnaments-mid{
+        width: 100%;
+      }
+    }
+  }
 }

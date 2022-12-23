@@ -1,4 +1,4 @@
-import { removeClass, generateError } from "./additions.js";
+import { removeClass, generateError,clearHTML } from "./additions.js";
 import {
   createCountryElement,
   renderContent,
@@ -20,6 +20,7 @@ function chooseFromList() {
   const country = document.querySelectorAll(".country-list p");
   country.forEach((el) => {
     el.addEventListener("click", () => {
+      clearHTML();
       removeClass("p-active");
       const resArray = responseCountry(el.textContent);
       el.classList.add("p-active");

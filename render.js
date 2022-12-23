@@ -1,4 +1,4 @@
-import { getNormalDate } from "./additions.js";
+
 // index
 const createCountryElement = (countries) => {
   console.log(countries);
@@ -52,13 +52,13 @@ function createLeagueElement(leagues) {
   <span class="lp">#</span>
 
   <span class="name">Team</span>
-  <span class="matches">M</span>
-  <span class="wins">W</span>
-  <span class="draw">D</span>
-  <span class="lose">L</span>
-  <span class="goals">B</span>
-  <span class="points">P</span>
-  <span class="balance">Balance</span>
+  <span class="matches">Matches</span>
+  <span class="wins">Wins</span>
+  <span class="draw">Draws</span>
+  <span class="lose">Loses</span>
+  <span class="goals">Balance</span>
+  <span class="points">Points</span>
+  <span class="balance">Last matches</span>
   
 </div></div>`;
 
@@ -135,29 +135,56 @@ function createElementPlayers(players) {
       // logoSrc.push(el.querySelector(".table-box-text name").innerText);
     }
   });
-
+  let header =`<div class="player-box top">
+  <p class="player-name"><img src="./icons/id.png" alt=""> Name</p>
+     <p class="player-age"> <img src="./icons/age.png" alt=""> Age</p>
+     <p class="player-number"><img src="./icons/shirt.png" alt=""> Number</p>
+     <p class="player-position"><img src="./icons/location.png" alt=""> Position</p>
+   </div>`;
   let logo = `<div class="players-logo-box-text">
-  <img src=${logoSrc[0]} alt=${logoSrc[1]}>
   <h3>${logoSrc[1]}</h3>
+  <img src="${logoSrc[0]}">
+  
 </div>
+
 <h4>Squad</h4>`;
 
   for (let i = 0; i < players.length; i++) {
+    let positionIcon = generatePlayerPositionHTML(players[i].position)
     let pattern = `
     <div class="player-box" data-id=${players[i].player_id}>
-      <img src=${players[i].png} alt="">
+    <div class="photos"><img class="first"src=${logoSrc[0]} alt=${logoSrc[1]}>
+    <img src=${players[i].png} class="second" alt="image ${players[i].name}"> </div>
+    
       <p class="player-name">${players[i].name}</p>
       <p class="player-age">${players[i].age}</p>
       <p class="player-number">${players[i].number}</p>
-      <p class="player-position">${players[i].position}</p>
+      <p class="player-position">${positionIcon}${players[i].position}</p>
     </div>`;
     patternAll = patternAll + pattern;
   }
   logoBox.innerHTML = logo;
-  playersBox.innerHTML = patternAll;
+  playersBox.innerHTML = header + patternAll;
   body.appendChild(logoBox);
   body.appendChild(playersBox);
   body.scrollIntoView({behavior:"smooth"})
+}
+function generatePlayerPositionHTML(playerPos){
+  if(playerPos ==="Goalkeeper"){
+    return `<img src="./icons/players_icon/goalkeeper.png" author="Freepik" alt="goalkeeper icon">`
+  }
+  if(playerPos ==="Defender"){
+    return `<img src="./icons/players_icon/shield.png"
+    author="Freepik" alt="shield icon">`
+  }
+  if(playerPos ==="Midfielder"){
+    return `<img src="./icons/players_icon/injury.png"
+    author="Freepik" alt="shirt with plus icon">`
+  }
+  if(playerPos ==="Attacker"){
+    return `<img src="./icons/players_icon/soccer-player.png"
+    author="Freepik" alt="soccer player icon">`
+  }
 }
 
 function createPlayerStatistics(players) {
@@ -166,61 +193,75 @@ function createPlayerStatistics(players) {
   body.innerHTML = "";
   let documentBody = "";
   let tournamentInfo = "";
-  let patternInfo = ` <img src=${players.player.photo} alt="photo ${players.player.name}" class="player-stats-image">
+  let patternInfo = ` 
   <div class="player-stats-info">
-    <p class="name">name: ${players.player.name}</p>
-    <p class="age">age: ${players.player.age}</p>
-    <p class="height">height: ${players.player.height}</p>
-    <p class="weight">weight: ${players.player.weight}</p>
-    <p class="birth">birth: ${players.player.birth.country}, ${players.player.birth.date}, ${players.player.birth.place}</p>
-    <p class="nationality">nationality: ${players.player.nationality}</p>
+  <img src=${players.player.photo} alt="photo ${players.player.name}" class="player-stats-image">
+  <div class="player-stats-attributes">
+    <span>Name:</span><p class="name"> ${players.player.name}</p>
+    <span>Age:</span><p class="age"> ${players.player.age}</p>
+    <span>Height:</span><p class="height"> ${players.player.height}</p>
+    <span>Weight:</span><p class="weight"> ${players.player.weight}</p>
+    <span>Birth:</span><p class="birth">${players.player.birth.date}</p>
+    <span>Nationality:</span><p class="nationality"> ${players.player.nationality}</p>
+    </div>
   </div>`;
 
   for (let i = 0; i < players.statistics.length; i++) {
+    let position = generatePlayerPositionHTML(players.statistics[i].statistics.games.position)
     let tournamentPattern = `<div class="player-stats-turnaments">
+    <p class="season">season ${players.statistics[i].statistics.league.season}</p>
+    <div class="turnaments-top">
     <div class="league">
-        <p class="name">league-name: ${players.statistics[i].statistics.league.name}</p>
-        <img  class="logo"src= ${players.statistics[i].statistics.league.logo} alt= ${players.statistics[i].statistics.league.name}>
-        <p class="season">season:  ${players.statistics[i].statistics.league.season}</p>
+        
+        <img  class="logo"src= ${players.statistics[i].statistics.league.logo} alt= "${players.statistics[i].statistics.league.name} logo">
+        <p class="name"> ${players.statistics[i].statistics.league.name}</p>
     </div>
     <div class="team">
-      <p class="name">team name: ${players.statistics[i].statistics.team.name}</p>
-      <img class ="logo" src= ${players.statistics[i].statistics.team.logo} alt= ${players.statistics[i].statistics.name}>
+      
+      <img class ="logo" src= ${players.statistics[i].statistics.team.logo} alt= "${players.statistics[i].statistics.name} logo">
+      <p class="name">${players.statistics[i].statistics.team.name}</p>
     </div>
-  
-     <div class="cards">
-        <p class="yellow">yellow cards:  ${players.statistics[i].statistics.cards.yellow}</p>
-        <p class="red">red cards:  ${players.statistics[i].statistics.cards.red}</p>
+  </div>
+  <div class="turnaments-mid">
+     <div class="turnaments-box"><h5><img src="./icons/stats_icon/red-card.png" author="Smashicons" alt="fotball cards">Cards</h5><span>yellow cards:</span> <p class="yellow">  ${players.statistics[i].statistics.cards.yellow}</p>
+     <span>red cards:</span> <p class="red">  ${players.statistics[i].statistics.cards.red}</p> </div>
+     <div class="turnaments-box"><h5><img src="./icons/stats_icon/axe.png" author="Darius Dan" alt="axes">Duels</h5>   <span>duels total:</span><p class="total">   ${players.statistics[i].statistics.duels.total}</p>
+     <span>duels won:</span><p class="won"> ${players.statistics[i].statistics.duels.won}</p>
+   </div>
+     <div class="turnaments-box"> <h5><img src="./icons/stats_icon/referee.png" author="Freepik" alt="football judge">Drawns</h5>    <span>fouls drawn:</span><p class="drawn"> ${players.statistics[i].statistics.fouls.drawn}</p>
+     <span>fouls committed:</span><p class="commited"> ${players.statistics[i].statistics.fouls.committed}</p>
      </div>
-     <div class="duels">
-        <p class="total"> duels total:  ${players.statistics[i].statistics.duels.total}</p>
-        <p class="won">duels won: ${players.statistics[i].statistics.duels.won}</p>
-     </div>
-     <div class="fouls">
-        <p class="drawn">fouls drawn: ${players.statistics[i].statistics.fouls.drawn}</p>
-        <p class="commited">fouls committed: ${players.statistics[i].statistics.fouls.committed}</p>
-     </div>
-     <div class="games">
-        <p class="appearences"> games appearences: ${players.statistics[i].statistics.games.appearences}</p>
-        <p class="lineups">lineups: ${players.statistics[i].statistics.games.lineups}</p>
-        <p class"minutes">minutes: ${players.statistics[i].statistics.games.minutes}</p>
-        <p class="position">position: ${players.statistics[i].statistics.games.position}</p>
-        <p class="rating">rating: ${players.statistics[i].statistics.games.rating}</p>
-     </div>
-     <div class="goals">
-        <p class="total">goals total: ${players.statistics[i].statistics.goals.total}</p>
-        <p class="assists">assists: ${players.statistics[i].statistics.goals.assists}</p>
-     </div>
-     <div class="passes">
-      <p class="total">passes total: ${players.statistics[i].statistics.passes.total}</p>
-      <p class="key">passes key: ${players.statistics[i].statistics.passes.key}</p>
-      <p class="accuracy">accuracy: ${players.statistics[i].statistics.passes.accuracy}</p>
-     </div>
-     <div class="shots">
-        <p class="total">total shots: ${players.statistics[i].statistics.shots.total}</p>
-        <p class="on">on: ${players.statistics[i].statistics.shots.on}</p>
-     </div>
-  
+     <div class="turnaments-box"> <h5><img src="./icons/stats_icon/stadium.png" author="Freepik" alt="football stadion">Games</h5> <span>games appearences:</span><p class="appearences">  ${players.statistics[i].statistics.games.appearences}</p>
+     <span>lineups:</span><p class="lineups"> ${players.statistics[i].statistics.games.lineups}</p>
+     <span>minutes:</span><p class="minutes"> ${players.statistics[i].statistics.games.minutes}</p>
+     <span>position: </span><p class="position">${players.statistics[i].statistics.games.position}${position}</p>
+     <span>rating:</span> <p class="rating"> ${players.statistics[i].statistics.games.rating}<img src="./icons/stats_icon/star.png" author=" Pixel perfect" alt="gold star"></p>
+      </div>
+     <div class="turnaments-box"><h5><img src="./icons/stats_icon/award.png" author="Freepik" alt="gold award">Goals</h5> <span>goals total:</span><p class="total"> ${players.statistics[i].statistics.goals.total}</p>
+     <span>assists:</span><p class="assists"> ${players.statistics[i].statistics.goals.assists}</p>
+      </div>
+     <div class="turnaments-box"><h5><img src="./icons/stats_icon/passing.png" author=" Marz Gallery" alt="Football passes image"> Passes</h5> <span>passes total: </span><p class="total">${players.statistics[i].statistics.passes.total}</p>
+     <span>passes key:</span><p class="key"> ${players.statistics[i].statistics.passes.key}</p>
+     <span>accuracy:</span><p class="accuracy"> ${players.statistics[i].statistics.passes.accuracy}</p> </div>
+     <div class="turnaments-box"><h5><img src="./icons/stats_icon/bullet.png" author="Smashicons" alt="bullet in fire">Shots</h5> <span>total shots:</span><p class="total"> ${players.statistics[i].statistics.shots.total}</p>
+     <span>On enemy gate:</span><p class="on"> ${players.statistics[i].statistics.shots.on}</p></div>
+     
+     
+     
+     
+     
+ 
+     
+   
+     
+    
+     
+    
+     
+     
+     
+     
+  </div>
   </div>`;
 
     tournamentInfo = tournamentInfo + tournamentPattern;

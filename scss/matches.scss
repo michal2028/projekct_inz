@@ -1,0 +1,104 @@
+@import "colors";
+
+.container{
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: $bg-color;
+  
+}
+h1{
+  text-align: center;
+  color:$font-color;
+  
+}
+.filters{
+  background-color: $main-color;
+}
+.winner{
+  color: rgb(37, 202, 37);
+}
+
+.matches-body {
+  font-family: 'Russo One', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    transition: 0.5s;
+    .match {
+      display: flex;
+      flex-direction: column;
+      background-color: $main-color;
+      color: $font-color;
+      cursor: pointer;
+      p{
+        text-align: center;
+      }
+      // background-color: #fff;
+      transition: 0.5s ease-in-out;
+      .match-top {
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        grid-template-rows: 1fr 100px;
+        justify-content: center;
+        align-items: center;
+        img{
+          width: 100px;
+          
+        }
+        .team-name-first{
+          padding-left: 1em;
+          font-size: 1.5rem;
+          grid-column: 1/2;
+        }
+        .team-name-second{
+          padding-right: 1em;
+          font-size: 1.5rem;
+          grid-column: 5/6;
+        }
+        .team-1{
+          grid-column: 2/3;
+          grid-row: 1/2;
+          margin: 0 auto;
+        }
+        .team-2{
+          grid-column: 4/5;
+          grid-row: 1/2;
+          margin: 0 auto;
+        }
+        .time{
+          grid-column: 3/4;
+          grid-row: 1/2;
+          font-size: 1.5rem;
+        }
+        .score-1{
+          font-size: 3rem;
+          grid-column: 2/3;
+          grid-row: 2/3;
+          text-align: center;
+        }
+        .score-2{
+          font-size: 3rem;
+          grid-column: 4/5;
+          grid-row: 2/3;
+          text-align: center;
+        }
+      }
+  
+      .match-bottom {
+        transition: 0.5s;
+        display: none;
+        .team-left{}
+        .team-right{}
+      }
+      .active {
+        transition: 0.5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }

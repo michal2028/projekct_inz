@@ -5,7 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live matches</title>
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/matches.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="container">
@@ -14,46 +21,46 @@
         <button><a href="./index.html">Back</a></button>
 
         <div class="filters">
-            <form action="">
-                <label for="country-select">Choose a country:</label>
-                <select name="country-select" id="country-select">
-                   
-                    <option value="no-filter" selected>No filter</option>
-                    <option value="poland">Poland</option>
-                    <option value="germany">Germany</option>
-                    <option value="england">England</option>
-                    <option value="spain">Spain</option>
-        
-                </select>
-                <label for="league-select">Choose a league:</label>
-                <select name="league-select" id="league-select" disabled>
-                   
-                    <option value="no-filter" selected>No filter</option>
-                    
-        
-                </select>
-                <label for="date-from">Date from:</label>
-                <input type="date" name="date-from" id="date-from" disabled>
-    
-                <label for="date-to">Date to:</label>
-                <input type="date" name="date-to" id="date-to" disabled>
-                <button type="button" class="form-submit" disabled>Check</button>
-            </form>
+            <div class="filters">
+                <form action="">
+                    <label for="country-select">Choose a country:</label>
+                    <select name="country-select" id="country-select">
+                       
+                        <option value="no-filter" selected>No filter</option>
+                        <option value="poland">Poland</option>
+                        <option value="germany">Germany</option>
+                        <option value="england">England</option>
+                        <option value="spain">Spain</option>
             
+                    </select>
+                    <label for="league-select">Choose a league:</label>
+                    <select name="league-select" id="league-select" disabled>
+                       
+                        <option value="no-filter" selected>No filter</option>
+                        
+            
+                    </select>
+                    <label for="date-from">Date from:</label>
+                    <input type="date" name="date-from" id="date-from" disabled>
+        
+                    <label for="date-to">Date to:</label>
+                    <input type="date" name="date-to" id="date-to" disabled>
+                    <button type="button" class="form-submit" disabled>Check</button>
+                </form>
+                
+            </div>
         </div>
        
-        <h1>Live matches</h1>
-        <div class="matches-body">
-                
-           
-            
-
+        <h1>Your matches</h1>
+        <div class="matches-body"> 
+        
         </div>
-
-    </div>
-    <script  type="module" src="./render.js"></script>
-    <script  type="module" src="./additions.js"></script>
+       
+       </div> 
+    <script type="module" src="./render.js"></script>
+    <script type="module" src="./additions.js"></script>
     <script type="module" src="./matches.js"></script>
+
 
 </body>
 </html>

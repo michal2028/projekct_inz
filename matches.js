@@ -26,31 +26,39 @@ function createLiveMatches(table) {
       if (table[i].score.home === table[i].score.away) {
         //
       } else if(table[i].teams.home.winner === true) {
-        isWinner1 = `<span class="winner"> Win </span>`;
+        isWinner1 = `winner`;
       }else{
-        isWinner2 = `<span class="winner"> Win </span>`;
+        isWinner2 = `winner`;
       }
     }
 
     let pattern = ` <div data-id=${i} data-fixture=${table[i].matchInfo.fixtureId} class="match">
+
         <p>${getNormalDate(table[i].matchInfo.data)}</p>
         <div class="match-top">
-            <p class="time">${table[i].matchInfo.matchTime}</p>
-            <p class="team-name">${isWinner1}${table[i].teams.home.name}</p>
-            <div class="team">
-                <img src=${table[i].teams.home.logo} alt="">
+        <p class="team-name-first ${isWinner1}">${table[i].teams.home.name}</p>
+        <p class="team-name-second ${isWinner2}">${table[i].teams.away.name}</p>
+        <div class="team-1">
+                <img src=${table[i].teams.home.logo} alt=" logo${table[i].teams.away.name}">
             </div>
-            <div class="score">
-                <p>${table[i].score.home}:${table[i].score.away}</p>
+            <p class="time">${table[i].matchInfo.matchTime}'</p>
+            
+            
+            <div class="score-1">
+            <span>${table[i].score.home}</span>
+             </div>
+             <div class="score-2">
+             <span>${table[i].score.away}</span>
+             </div>
+            <div class="team-2">
+                <img src=${table[i].teams.away.logo} alt="logo ${table[i].teams.away.name}">
             </div>
-            <div class="team">
-                <img src=${table[i].teams.away.logo} alt="">
-            </div>
-            <p class="team-name">${isWinner2}${table[i].teams.away.name}</p>
+           
 
         </div>
         <div class="match-bottom">
-
+            <div class="team-left"></div>
+            <div class="team-right"></div>
             </div>
        </div>`;
 
@@ -150,26 +158,22 @@ function generateLeaguesSelect(countryValue, selectOption) {
       inputLeaguesIntoSelect(countries, selectOption);
     });
 }
-function matchDetails(fixture,detailsTable){
-  let detailsMatch ={};
+function matchDetails(fixture,detailsTable,el){
+  let detailsMatch =[];
   fetch(`https://api-football-v1.p.rapidapi.com/v3/fixtures?id=${fixture}`,options)
   .then(res => res.json())
   .then(res =>{
     
     console.log(res)
     detailsTable.push(fixture)
-    detailsMatch = res.response.map(el =>{
+    detailsMatch = res.response[0].events.map(el =>{
+      console.log(el)
       return{
-        fixture:{
-          city: el.fixture.venue.city,
-          stadion: el.fixture.venue.name
-        },
-        events: el.events,
-        lineups:el.lineups,
-        stats: el.statistics
+        events: el
       }
     })
     console.log(detailsMatch);
+    generateEventsMatch(detailsMatch,el)
   })
   .catch(err => console.log(err))
 }
@@ -180,13 +184,51 @@ function createListenerMatch(table, detailsTable) {
     el.addEventListener("click", () => {
       let fixture = el.getAttribute('data-fixture')
       if(!detailsTable.includes(fixture)){
-        matchDetails(fixture,detailsTable)
+        matchDetails(fixture,detailsTable,el) 
       }
       el.querySelector(".match-bottom").classList.toggle("active");
+      
       console.log(el)
       console.log(detailsTable)
     });
   });
+}
+async function generateEventsMatch(table,el){
+  console.log(el)
+  console.log(table)
+  
+  let teamLeft = el.querySelector('.team-left')
+  let teamRight = el.querySelector('.team-right')
+  let homeAll ="";
+  let awayAll ="";
+ 
+  teamLeft.innerHTML = "";
+  teamRight.innerHTML = "";
+
+  console.log(el.querySelector('.team-name-first').innerText)
+
+  for(let i =0;i<table.length;i++){
+    let home = "";
+  let away = "";
+  if(table[i].events.type !== "subst"){
+    if(table[i].events.team.name === el.querySelector('.team-name-first').innerText){
+      home = `<p class="event-time">${table[i].events.time.elapsed}</p><p class="event-detail">${table[i].events.detail}</p>
+      <p class="event-player">${table[i].events.player.name}</p>`
+       homeAll = homeAll + home;
+     }
+    if(table[i].events.team.name === el.querySelector('.team-name-second').innerText){
+      away = `<p class="event-time">${table[i].events.time.elapsed}</p><p class="event-detail">${table[i].events.detail}</p>
+      <p class="event-player">${table[i].events.player.name}</p>`
+       awayAll = awayAll + away;
+     }
+   
+  }
+    
+
+  }
+  teamRight.innerHTML = awayAll;
+  teamLeft.innerHTML = homeAll;
+
 }
 
 function responseLiveMatches(

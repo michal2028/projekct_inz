@@ -29,6 +29,14 @@ function generateError(section, error="can't load data, sorry"){
 
 }
 
+function clearHTML(){
+  const table = document.querySelector('.table');
+  const players = document.querySelector('.players')
+  const playerStats = document.querySelector('.player-stats')
+  table.innerHTML = "";
+  playerStats.innerHTML ="";
+  players.innerHTML = "";
+}
 
 
-export {removeClass,getNormalDate,dateValidation,generateError}
+export {removeClass,getNormalDate,dateValidation,generateError,clearHTML}
