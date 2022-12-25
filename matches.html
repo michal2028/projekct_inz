@@ -16,12 +16,17 @@
 </head>
 <body>
     <div class="container">
-
+            <header>
+                <img src="./icons/bet.png" author="freepik" alt="logo ball on books">
+                <h1>Matches</h1>
+            </header>
         
-        <button><a href="./index.html">Back</a></button>
+        
+        
 
-        <div class="filters">
+      
             <div class="filters">
+                <button class="back"><a href="./index.html">Football Scores</a></button>
                 <form action="">
                     <label for="country-select">Choose a country:</label>
                     <select name="country-select" id="country-select">
@@ -41,17 +46,17 @@
             
                     </select>
                     <label for="date-from">Date from:</label>
-                    <input type="date" name="date-from" id="date-from" disabled>
+                    <input class="date-from" type="date" name="date-from" id="date-from" disabled>
         
                     <label for="date-to">Date to:</label>
-                    <input type="date" name="date-to" id="date-to" disabled>
+                    <input  class="date-to"type="date" name="date-to" id="date-to" disabled>
                     <button type="button" class="form-submit" disabled>Check</button>
                 </form>
                 
             </div>
         </div>
        
-        <h1>Your matches</h1>
+        <h2>Your matches</h2>
         <div class="matches-body"> 
         
         </div>
@@ -63,4 +68,5 @@
 
 
 </body>
+
 </html>

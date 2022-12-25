@@ -8,13 +8,134 @@ body {
   background-color: #292929;
 }
 
-h1 {
+h2, h1 {
   text-align: center;
   color: #747576;
+  text-transform: uppercase;
+  font-family: 'Russo One', sans-serif;
+}
+
+header {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+}
+
+header h1 {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+}
+
+header img {
+  margin: 0 auto;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  width: 50px;
 }
 
 .filters {
   background-color: #393939;
+  position: relative;
+  padding: 1em;
+  color: #747576;
+}
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 auto;
+  max-width: 550px;
+  gap: .5em;
+}
+
+button {
+  margin: 1em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #393939;
+  border: 3px solid #747576;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #747576;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  fill: #000;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+}
+
+button a {
+  text-decoration: none;
+  color: #747576;
+}
+
+button:focus {
+  color: #171e29;
+}
+
+button:hover {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+button:active {
+  border-color: #06f;
+  color: #747576;
+  fill: #06f;
+}
+
+@media (min-width: 768px) {
+  .button-59 {
+    min-width: 170px;
+  }
+}
+
+.date-to, .date-from, select {
+  background-color: #747576;
+  font-family: "Roboto Mono",monospace;
+  color: #ffffff;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: .3em;
 }
 
 .winner {
@@ -33,6 +154,8 @@ h1 {
   gap: 1em;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .matches-body .match {
@@ -145,6 +268,63 @@ h1 {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   display: none;
+  margin: 0 auto;
+}
+
+.matches-body .match .match-bottom .event-time {
+  padding: 0 1em;
+}
+
+.matches-body .match .match-bottom p {
+  font-size: .75rem;
+}
+
+.matches-body .match .match-bottom img {
+  margin: 0 .5em;
+  width: 25px;
+}
+
+.matches-body .match .match-bottom .event-player {
+  width: 150px;
+}
+
+.matches-body .match .match-bottom .event-left, .matches-body .match .match-bottom .event-right {
+  border-top: 1px solid #747576;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.matches-body .match .match-bottom .event-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.matches-body .match .match-bottom .team-left {
+  width: 50%;
+}
+
+.matches-body .match .match-bottom .team-right {
+  width: 50%;
+}
+
+.matches-body .match .match-bottom .event-text {
+  height: 28px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .matches-body .match .active {
@@ -156,8 +336,91 @@ h1 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+@media screen and (max-width: 620px) {
+  .matches-body .match .match-top {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+    -ms-grid-rows: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+  }
+  .matches-body .match .match-top .team-name-second {
+    -ms-grid-column: 3;
+    -ms-grid-column-span: 1;
+    grid-column: 3/4;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1/2;
+  }
+  .matches-body .match .match-top p {
+    width: 100%;
+  }
+  .matches-body .match .match-top .team-name-first {
+    padding: 0;
+  }
+  .matches-body .match .match-top .team-2 {
+    -ms-grid-column: 3;
+    -ms-grid-column-span: 1;
+    grid-column: 3/4;
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 1;
+    grid-row: 2/3;
+  }
+  .matches-body .match .match-top .score-2 {
+    -ms-grid-column: 3;
+    -ms-grid-column-span: 1;
+    grid-column: 3/4;
+    -ms-grid-row: 3;
+    -ms-grid-row-span: 1;
+    grid-row: 3/4;
+  }
+  .matches-body .match .match-top .score-1 {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1/2;
+    -ms-grid-row: 3;
+    -ms-grid-row-span: 1;
+    grid-row: 3/4;
+  }
+  .matches-body .match .match-top .time {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-column: 2/3;
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 1;
+    grid-row: 2/3;
+  }
+  .matches-body .match .match-top .team-1 {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1/2;
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 1;
+    grid-row: 2/3;
+  }
+  .matches-body .match .match-bottom {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .matches-body .match .match-bottom .team-left {
+    margin-bottom: 1.5em;
+  }
 }
 /*# sourceMappingURL=matches.css.map */

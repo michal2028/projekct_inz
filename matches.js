@@ -210,15 +210,16 @@ async function generateEventsMatch(table,el){
   for(let i =0;i<table.length;i++){
     let home = "";
   let away = "";
+  let event = generateEventHTML(table[i].events.detail)
   if(table[i].events.type !== "subst"){
     if(table[i].events.team.name === el.querySelector('.team-name-first').innerText){
-      home = `<p class="event-time">${table[i].events.time.elapsed}</p><p class="event-detail">${table[i].events.detail}</p>
-      <p class="event-player">${table[i].events.player.name}</p>`
+      home = `<div class="event-left"><p class="event-time">${table[i].events.time.elapsed}'</p><p class="event-player">${table[i].events.player.name}</p><p class="event-detail">${event}</p>
+      </div>`
        homeAll = homeAll + home;
      }
     if(table[i].events.team.name === el.querySelector('.team-name-second').innerText){
-      away = `<p class="event-time">${table[i].events.time.elapsed}</p><p class="event-detail">${table[i].events.detail}</p>
-      <p class="event-player">${table[i].events.player.name}</p>`
+      away = `<div class="event-right"><p class="event-time">${table[i].events.time.elapsed}'</p><p class="event-player">${table[i].events.player.name}</p><p class="event-detail">${event}</p></div>
+      `
        awayAll = awayAll + away;
      }
    
@@ -229,6 +230,20 @@ async function generateEventsMatch(table,el){
   teamRight.innerHTML = awayAll;
   teamLeft.innerHTML = homeAll;
 
+}
+
+function generateEventHTML(event){
+  if(event ==="Yellow Card"){
+    return `<img src="./icons/matches_icon/yellow-card.png" alt="yellow card">`
+  }
+  if(event ==="Normal Goal" || event === "Own Goal"){
+    return `<img src="./icons/matches_icon/goal.png" alt="football ball">`
+  }
+  if(event === "Red Card"){
+    return `<img src="./icons/matches_icon/red.png" alt="red card">`
+  }else{
+    return `<p class="event-text">${event}</p>`
+  }
 }
 
 function responseLiveMatches(
