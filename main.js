@@ -29,6 +29,15 @@ function chooseFromList() {
   });
 }
 
+function otherCountries(){
+  const button = document.querySelector('.country-button');
+  button.addEventListener('click', () =>{
+    const input = document.getElementById('country-input');
+    responseCountry(input.value);
+
+  })
+}
+
 function responseLeague(query) {
   let leagues = [];
   fetch(
@@ -173,6 +182,7 @@ function responseCountry(query) {
         createCountryElement(countries);
 
         renderContent(responseLeague, ".league-box");
+        otherCountries();
       })
 
       .catch((err) => console.error(err));
