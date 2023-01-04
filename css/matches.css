@@ -1,3 +1,98 @@
+.country-button {
+  margin: .5em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #393939;
+  border: 3px solid #b6b7b9;
+  border-radius: 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #b6b7b9;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  fill: #000;
+  font-weight: 600;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  width: 100%;
+}
+
+.country-button a {
+  text-decoration: none;
+  color: #b6b7b9;
+}
+
+.country-button:hover {
+  background-color: #b6b7b9;
+  color: #292929;
+}
+
+.form-submit, .back {
+  margin: 1em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #393939;
+  border: 3px solid #b6b7b9;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #b6b7b9;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  fill: #000;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+}
+
+.form-submit a, .back a {
+  text-decoration: none;
+  color: #b6b7b9;
+}
+
+.form-submit:hover, .back:focus {
+  background-color: #b6b7b9;
+  color: #292929;
+}
+
 .container {
   margin: 0 auto;
   max-width: 1200px;
@@ -10,7 +105,7 @@ body {
 
 h2, h1 {
   text-align: center;
-  color: #747576;
+  color: #b6b7b9;
   text-transform: uppercase;
   font-family: 'Russo One', sans-serif;
 }
@@ -46,7 +141,7 @@ header img {
   background-color: #393939;
   position: relative;
   padding: 1em;
-  color: #747576;
+  color: #b6b7b9;
 }
 
 form {
@@ -62,73 +157,8 @@ form {
   gap: .5em;
 }
 
-button {
-  margin: 1em;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #393939;
-  border: 3px solid #747576;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  color: #747576;
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  fill: #000;
-  font-size: 16px;
-  font-weight: 600;
-  height: 48px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  letter-spacing: -.8px;
-  line-height: 24px;
-  min-width: 140px;
-  outline: 0;
-  padding: 0 17px;
-  text-align: center;
-  text-decoration: none;
-  -webkit-transition: all .3s;
-  transition: all .3s;
-  -moz-user-select: none;
-   -ms-user-select: none;
-       user-select: none;
-  -webkit-user-select: none;
-  -ms-touch-action: manipulation;
-      touch-action: manipulation;
-}
-
-button a {
-  text-decoration: none;
-  color: #747576;
-}
-
-button:focus {
-  color: #171e29;
-}
-
-button:hover {
-  border-color: #06f;
-  color: #06f;
-  fill: #06f;
-}
-
-button:active {
-  border-color: #06f;
-  color: #747576;
-  fill: #06f;
-}
-
-@media (min-width: 768px) {
-  .button-59 {
-    min-width: 170px;
-  }
-}
-
 .date-to, .date-from, select {
-  background-color: #747576;
+  background-color: #b6b7b9;
   font-family: "Roboto Mono",monospace;
   color: #ffffff;
   font-size: 18px;
@@ -167,7 +197,7 @@ button:active {
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: #393939;
-  color: #747576;
+  color: #b6b7b9;
   cursor: pointer;
   -webkit-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
@@ -289,7 +319,7 @@ button:active {
 }
 
 .matches-body .match .match-bottom .event-left, .matches-body .match .match-bottom .event-right {
-  border-top: 1px solid #747576;
+  border-top: 1px solid #b6b7b9;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -421,6 +451,12 @@ button:active {
   }
   .matches-body .match .match-bottom .team-left {
     margin-bottom: 1.5em;
+  }
+}
+
+@media (min-width: 768px) {
+  .button-59 {
+    min-width: 170px;
   }
 }
 /*# sourceMappingURL=matches.css.map */

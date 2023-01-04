@@ -7,6 +7,101 @@
   margin: 0;
 }
 
+.country-button {
+  margin: .5em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #393939;
+  border: 3px solid #b6b7b9;
+  border-radius: 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #b6b7b9;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  fill: #000;
+  font-weight: 600;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  width: 100%;
+}
+
+.country-button a {
+  text-decoration: none;
+  color: #b6b7b9;
+}
+
+.country-button:hover {
+  background-color: #b6b7b9;
+  color: #292929;
+}
+
+.form-submit, .back {
+  margin: 1em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #393939;
+  border: 3px solid #b6b7b9;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #b6b7b9;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  fill: #000;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+}
+
+.form-submit a, .back a {
+  text-decoration: none;
+  color: #b6b7b9;
+}
+
+.form-submit:hover, .back:focus {
+  background-color: #b6b7b9;
+  color: #292929;
+}
+
 html {
   font-family: "Roboto", sans-serif;
   font-size: 62, 5%;
@@ -71,7 +166,7 @@ body {
 }
 
 .logo h1 {
-  color: #747576;
+  color: #b6b7b9;
   font-size: 25px;
 }
 
@@ -98,71 +193,31 @@ form {
 }
 
 form input {
-  background-color: #747576;
-  max-width: 150px;
+  background-color: #b6b7b9;
+  max-width: 200px;
   color: #ffffff;
   font-size: 18px;
   border: none;
   outline: none;
-  border-radius: 5px;
+  border-radius: 15px;
   padding: .3em;
 }
 
-.country-button {
-  margin: .5em;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #393939;
-  border: 3px solid #747576;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  color: #747576;
+.up-button {
+  position: fixed;
+  background-color: #b6b7b9;
+  bottom: 0;
+  left: 80%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: .3em;
+  -webkit-transform: translateX(-50%, -50%);
+          transform: translateX(-50%, -50%);
   cursor: pointer;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  fill: #000;
-  font-weight: 600;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  letter-spacing: -.8px;
-  line-height: 24px;
-  outline: 0;
-  padding: 0 17px;
-  text-align: center;
-  text-decoration: none;
-  -webkit-transition: all .3s;
-  transition: all .3s;
-  -moz-user-select: none;
-   -ms-user-select: none;
-       user-select: none;
-  -webkit-user-select: none;
-  -ms-touch-action: manipulation;
-      touch-action: manipulation;
-  width: 100%;
 }
 
-.country-button a {
-  text-decoration: none;
-  color: #747576;
-}
-
-.country-button:focus {
-  color: #171e29;
-}
-
-.country-button:hover {
-  border-color: #06f;
-  color: #06f;
-  fill: #06f;
-}
-
-.country-button:active {
-  border-color: #06f;
-  color: #747576;
-  fill: #06f;
+.up-button img {
+  width: 30px;
 }
 
 .country-list {
@@ -195,7 +250,7 @@ form input {
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
   cursor: pointer;
-  color: #747576;
+  color: #b6b7b9;
 }
 
 .country-list p:hover {
@@ -203,13 +258,13 @@ form input {
   color: #bf9ef1;
 }
 
-.p-active {
-  position: relative;
-  border: 2px solid #bf9ef1;
+.country-list .p-active {
+  background-color: #b6b7b9;
+  color: #292929;
 }
 
-.p-active p {
-  color: #bf9ef1;
+.country-list .p-active:hover {
+  color: #292929;
 }
 
 .countries {
@@ -239,7 +294,7 @@ form input {
   overflow: hidden;
   border-radius: 10px;
   width: 100%;
-  color: #747576;
+  color: #b6b7b9;
 }
 
 .league-body .league-box {
@@ -292,7 +347,7 @@ form input {
 }
 
 .league-body .league-box:hover {
-  background-color: #747576;
+  background-color: #b6b7b9;
   color: #393939;
 }
 
@@ -325,7 +380,7 @@ form input {
       grid-template-columns: repeat(12, 1fr);
   padding: 1em;
   text-align: center;
-  color: #747576;
+  color: #b6b7b9;
 }
 
 .table .table-box .table-box-text img {
@@ -426,7 +481,7 @@ form input {
 }
 
 .table .table-box:first-child {
-  background-color: #747576;
+  background-color: #b6b7b9;
 }
 
 .table .table-box:first-child .name {
@@ -447,7 +502,7 @@ form input {
 }
 
 .table .table-box:hover {
-  background-color: #747576;
+  background-color: #b6b7b9;
 }
 
 .table .table-box:hover .table-box-text {
@@ -465,7 +520,7 @@ form input {
       -ms-flex-direction: row;
           flex-direction: row;
   padding: 1em;
-  color: #747576;
+  color: #b6b7b9;
 }
 
 .players .players-logo-box {
@@ -516,7 +571,7 @@ form input {
 }
 
 .players .players-box .top {
-  background-color: #747576;
+  background-color: #b6b7b9;
 }
 
 .players .players-box .player-box {
@@ -599,18 +654,18 @@ form input {
 }
 
 .players .players-box .player-box:first-child {
-  background-color: #747576;
+  background-color: #b6b7b9;
   color: #393939;
   cursor: default;
 }
 
 .players .players-box .player-box:hover {
-  background-color: #747576;
+  background-color: #b6b7b9;
   color: #393939;
 }
 
 .player-stats {
-  color: #747576;
+  color: #b6b7b9;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -652,7 +707,7 @@ form input {
   display: grid;
   -ms-grid-columns: (1fr)[2];
       grid-template-columns: repeat(2, 1fr);
-  background-color: #747576;
+  background-color: #b6b7b9;
   color: #393939;
   border-radius: 15px;
   padding: 1em;
@@ -744,7 +799,7 @@ form input {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #747576;
+  background-color: #b6b7b9;
   color: #393939;
   width: 50%;
   padding: 1.5em;
@@ -783,6 +838,7 @@ form input {
   grid-column: 1/-1;
   text-align: center;
   margin-bottom: .5em;
+  font-size: 1.2rem;
 }
 
 .player-stats .player-stats-turnaments .turnaments-mid .turnaments-box h5 img {

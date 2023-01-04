@@ -1,4 +1,4 @@
-import { removeClass, generateError,clearHTML } from "./additions.js";
+import { removeClass, generateError, clearHTML,upButton } from "./additions.js";
 import {
   createCountryElement,
   renderContent,
@@ -7,14 +7,8 @@ import {
   choosePlayer,
   createPlayerStatistics,
 } from "./render.js";
+import { options } from "./env.js";
 
-const options = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": "dc935f1d6emsh3dde368f85b528ep1aca42jsnaaeaf9657fab",
-    "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
-  },
-};
 
 function chooseFromList() {
   const country = document.querySelectorAll(".country-list p");
@@ -29,17 +23,19 @@ function chooseFromList() {
   });
 }
 
-function otherCountries(){
-  const button = document.querySelector('.country-button');
-  button.addEventListener('click', () =>{
-    const input = document.getElementById('country-input');
+function otherCountries() {
+  const button = document.querySelector(".country-button");
+  button.addEventListener("click", () => {
+    const input = document.getElementById("country-input");
     responseCountry(input.value);
-
-  })
+  });
 }
 
 function responseLeague(query) {
+
+  console.log(query + "to jest query")
   let leagues = [];
+ 
   fetch(
     `https://api-football-v1.p.rapidapi.com/v3/standings?season=2022&league=${query}`,
     options
@@ -129,7 +125,7 @@ function responsePlayer(playerId) {
   promise
     .then((res) => {
       playerData.player = res.response[0].player;
-      
+
       playerData.statistics = res.response[0].statistics.map((el) => {
         for (let key in el) {
           for (let key2 in el[key]) {
@@ -151,8 +147,10 @@ function responsePlayer(playerId) {
 }
 
 function responseCountry(query) {
+  upButton();
   document.addEventListener("DOMContentLoaded", () => {
     responseCountry("poland");
+    responseLeague(107)
   });
 
   let countries;
