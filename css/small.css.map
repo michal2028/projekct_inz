@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../scss/small.scss"
+    ],
+    "names": [],
+    "file": "small.css"
+}
