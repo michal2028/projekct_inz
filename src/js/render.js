@@ -4,13 +4,13 @@ import { createListenerMatch } from "./matches.js";
 
 function generateEventHTML(event) {
   if (event === "Yellow Card") {
-    return `<img src="./icons/matches_icon/yellow-card.png" alt="yellow card">`;
+    return `<img src="./src/icons/matches_icon/yellow-card.png" alt="yellow card">`;
   }
   if (event === "Normal Goal" || event === "Own Goal") {
-    return `<img src="./icons/matches_icon/goal.png" alt="football ball">`;
+    return `<img src="./src/icons/matches_icon/goal.png" alt="football ball">`;
   }
   if (event === "Red Card") {
-    return `<img src="./icons/matches_icon/red.png" alt="red card">`;
+    return `<img src="./src/icons/matches_icon/red.png" alt="red card">`;
   } else {
     return `<p class="event-text">${event}</p>`;
   }
@@ -235,10 +235,10 @@ function createElementPlayers(players) {
     }
   });
   const header = `<div class="player-box top">
-  <p class="player-name"><img src="./icons/id.png" alt=""> Name</p>
-     <p class="player-age"> <img src="./icons/age.png" alt=""> Age</p>
-     <p class="player-number"><img src="./icons/shirt.png" alt=""> Number</p>
-     <p class="player-position"><img src="./icons/location.png" alt=""> Position</p>
+  <p class="player-name"><img src="./src/icons/id.png" alt="id_card"> Name</p>
+     <p class="player-age"> <img src="./src/icons/age.png" alt="age symbol"> Age</p>
+     <p class="player-number"><img src="./src/icons/shirt.png" alt="tshirt"> Number</p>
+     <p class="player-position"><img src="./src/icons/location.png" alt="google pin"> Position</p>
    </div>`;
   const logo = `<div class="players-logo-box-text">
   <h3>${logoSrc[1]}</h3>
@@ -268,18 +268,18 @@ function createElementPlayers(players) {
 }
 function generatePlayerPositionHTML(playerPos) {
   if (playerPos === "Goalkeeper") {
-    return `<img src="./icons/players_icon/goalkeeper.png" author="Freepik" alt="goalkeeper icon">`;
+    return `<img src="./src/icons/players_icon/goalkeeper.png" author="Freepik" alt="goalkeeper icon">`;
   }
   if (playerPos === "Defender") {
-    return `<img src="./icons/players_icon/shield.png"
+    return `<img src="./src/icons/players_icon/shield.png"
     author="Freepik" alt="shield icon">`;
   }
   if (playerPos === "Midfielder") {
-    return `<img src="./icons/players_icon/injury.png"
+    return `<img src="./src/icons/players_icon/injury.png"
     author="Freepik" alt="shirt with plus icon">`;
   }
   if (playerPos === "Attacker") {
-    return `<img src="./icons/players_icon/soccer-player.png"
+    return `<img src="./src/icons/players_icon/soccer-player.png"
     author="Freepik" alt="soccer player icon">`;
   }
 }
@@ -321,27 +321,27 @@ function createPlayerStatistics(players) {
     </div>
   </div>
   <div class="turnaments-mid">
-     <div class="turnaments-box"><h5><img src="./icons/stats_icon/red-card.png" author="Smashicons" alt="fotball cards">Cards</h5><span>yellow cards:</span> <p class="yellow">  ${players.statistics[i].statistics.cards.yellow}</p>
+     <div class="turnaments-box"><h5><img src="./src/icons/stats_icon/red-card.png" author="Smashicons" alt="fotball cards">Cards</h5><span>yellow cards:</span> <p class="yellow">  ${players.statistics[i].statistics.cards.yellow}</p>
      <span>red cards:</span> <p class="red">  ${players.statistics[i].statistics.cards.red}</p> </div>
-     <div class="turnaments-box"><h5><img src="./icons/stats_icon/axe.png" author="Darius Dan" alt="axes">Duels</h5>   <span>duels total:</span><p class="total">   ${players.statistics[i].statistics.duels.total}</p>
+     <div class="turnaments-box"><h5><img src="./src/icons/stats_icon/axe.png" author="Darius Dan" alt="axes">Duels</h5>   <span>duels total:</span><p class="total">   ${players.statistics[i].statistics.duels.total}</p>
      <span>duels won:</span><p class="won"> ${players.statistics[i].statistics.duels.won}</p>
    </div>
-     <div class="turnaments-box"> <h5><img src="./icons/stats_icon/referee.png" author="Freepik" alt="football judge">Drawns</h5>    <span>fouls drawn:</span><p class="drawn"> ${players.statistics[i].statistics.fouls.drawn}</p>
+     <div class="turnaments-box"> <h5><img src="./src/icons/stats_icon/referee.png" author="Freepik" alt="football judge">Drawns</h5>    <span>fouls drawn:</span><p class="drawn"> ${players.statistics[i].statistics.fouls.drawn}</p>
      <span>fouls committed:</span><p class="commited"> ${players.statistics[i].statistics.fouls.committed}</p>
      </div>
-     <div class="turnaments-box"> <h5><img src="./icons/stats_icon/stadium.png" author="Freepik" alt="football stadion">Games</h5> <span>games appearences:</span><p class="appearences">  ${players.statistics[i].statistics.games.appearences}</p>
+     <div class="turnaments-box"> <h5><img src="./src/icons/stats_icon/stadium.png" author="Freepik" alt="football stadion">Games</h5> <span>games appearences:</span><p class="appearences">  ${players.statistics[i].statistics.games.appearences}</p>
      <span>lineups:</span><p class="lineups"> ${players.statistics[i].statistics.games.lineups}</p>
      <span>minutes:</span><p class="minutes"> ${players.statistics[i].statistics.games.minutes}</p>
      <span>position: </span><p class="position">${players.statistics[i].statistics.games.position}${position}</p>
-     <span>rating:</span> <p class="rating"> ${players.statistics[i].statistics.games.rating}<img src="./icons/stats_icon/star.png" author=" Pixel perfect" alt="gold star"></p>
+     <span>rating:</span> <p class="rating"> ${players.statistics[i].statistics.games.rating}<img src="./src/icons/stats_icon/star.png" author=" Pixel perfect" alt="gold star"></p>
       </div>
-     <div class="turnaments-box"><h5><img src="./icons/stats_icon/award.png" author="Freepik" alt="gold award">Goals</h5> <span>goals total:</span><p class="total"> ${players.statistics[i].statistics.goals.total}</p>
+     <div class="turnaments-box"><h5><img src="./src/icons/stats_icon/award.png" author="Freepik" alt="gold award">Goals</h5> <span>goals total:</span><p class="total"> ${players.statistics[i].statistics.goals.total}</p>
      <span>assists:</span><p class="assists"> ${players.statistics[i].statistics.goals.assists}</p>
       </div>
-     <div class="turnaments-box"><h5><img src="./icons/stats_icon/passing.png" author=" Marz Gallery" alt="Football passes image"> Passes</h5> <span>passes total: </span><p class="total">${players.statistics[i].statistics.passes.total}</p>
+     <div class="turnaments-box"><h5><img src="./src/icons/stats_icon/passing.png" author=" Marz Gallery" alt="Football passes image"> Passes</h5> <span>passes total: </span><p class="total">${players.statistics[i].statistics.passes.total}</p>
      <span>passes key:</span><p class="key"> ${players.statistics[i].statistics.passes.key}</p>
      <span>accuracy:</span><p class="accuracy"> ${players.statistics[i].statistics.passes.accuracy}</p> </div>
-     <div class="turnaments-box"><h5><img src="./icons/stats_icon/bullet.png" author="Smashicons" alt="bullet in fire">Shots</h5> <span>total shots:</span><p class="total"> ${players.statistics[i].statistics.shots.total}</p>
+     <div class="turnaments-box"><h5><img src="./src/icons/stats_icon/bullet.png" author="Smashicons" alt="bullet in fire">Shots</h5> <span>total shots:</span><p class="total"> ${players.statistics[i].statistics.shots.total}</p>
      <span>On enemy gate:</span><p class="on"> ${players.statistics[i].statistics.shots.on}</p></div>
   </div>
   </div>`;
