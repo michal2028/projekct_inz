@@ -19,3 +19,5 @@ $ cd ../project_inz
 $ npm  run build
 $ npm  run compile
 ```
+### Live view
+[Football Scores App](https://michal2028.github.io/projekct_inz/)
