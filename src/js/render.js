@@ -59,7 +59,7 @@ function createLiveMatches(table) {
   let patternAll = "";
   let isWinner1 = "";
   let isWinner2 = "";
-  //  console.log(table)
+
   for (let i = 0; i < table.length; i++) {
     if (
       table[i].matchInfo.matchTime === null ||
@@ -72,7 +72,6 @@ function createLiveMatches(table) {
     }
     if (table[i].matchInfo.status.toLowerCase() === "match finished") {
       if (table[i].score.home === table[i].score.away) {
-        //
       } else if (table[i].teams.home.winner === true) {
         isWinner1 = `winner`;
       } else {
@@ -143,7 +142,6 @@ const createCountryElement = (countries) => {
   body.innerHTML = patternAll;
 };
 function renderContent(callback, selectorCss) {
-
   let choose;
   const leagues = document.querySelectorAll(selectorCss);
   leagues.forEach((el) => {
@@ -231,7 +229,6 @@ function createElementPlayers(players) {
     if (el.getAttribute("data-id") === players[0].team_id) {
       logoSrc.push(el.querySelector(".table-box-text img").src);
       logoSrc.push(el.querySelector(".name").innerHTML);
-      // logoSrc.push(el.querySelector(".table-box-text name").innerText);
     }
   });
   const header = `<div class="player-box top">

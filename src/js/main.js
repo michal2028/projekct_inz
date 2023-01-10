@@ -1,4 +1,9 @@
-import { removeClass, generateError, clearHTML,upButton } from "./additions.js";
+import {
+  removeClass,
+  generateError,
+  clearHTML,
+  upButton,
+} from "./additions.js";
 import {
   createCountryElement,
   renderContent,
@@ -8,7 +13,6 @@ import {
   createPlayerStatistics,
 } from "./render.js";
 import { options } from "./env.js";
-
 
 function chooseFromList() {
   const country = document.querySelectorAll(".country-list p");
@@ -24,27 +28,29 @@ function chooseFromList() {
 }
 
 function otherCountries() {
+  const form = document.querySelector(".country-type-form");
   const button = document.querySelector(".country-button");
-  button.addEventListener("click", () => {
-    const input = document.getElementById("country-input");
+  const input = document.getElementById("country-input");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    responseCountry(input.value);
+  });
+  button.addEventListener("click", (e) => {
+    e.preventDefault();
     responseCountry(input.value);
   });
 }
 
 function responseLeague(query) {
-
-  console.log(query + "to jest query")
   let leagues = [];
- 
+
   fetch(
     `https://api-football-v1.p.rapidapi.com/v3/standings?season=2022&league=${query}`,
     options
   )
     .then((response) => response.json())
     .then((response) => {
-      console.log(response);
       if (response.response.length === 0) {
-        console.log("pusto");
         createLeagueElement(false);
       } else {
         leagues = response.response[0].league.standings[0].map((el) => {
@@ -64,7 +70,7 @@ function responseLeague(query) {
             form: el.form,
           };
         });
-        console.log(leagues);
+
         createLeagueElement(leagues);
         renderContent(responseTeam, ".table-box");
       }
@@ -94,7 +100,7 @@ function responseTeam(query) {
           position: el.position,
         };
       });
-      console.log(players);
+
       createElementPlayers(players);
       choosePlayer(responsePlayer);
     })
@@ -150,7 +156,7 @@ function responseCountry(query) {
   upButton();
   document.addEventListener("DOMContentLoaded", () => {
     responseCountry("poland");
-    responseLeague(107)
+    responseLeague(107);
   });
 
   let countries;
@@ -162,7 +168,6 @@ function responseCountry(query) {
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         countries = response.response.map((el) => {
           return {
             country: {
