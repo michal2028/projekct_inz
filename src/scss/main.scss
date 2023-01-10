@@ -75,6 +75,11 @@ form{
   border-radius: 15px;
   padding: .3em;
   }
+  label{
+    color:$font-color;
+    margin-bottom: .2em;
+    width: 100%;
+  }
 }
 .up-button{
   position: fixed;

@@ -88,7 +88,7 @@
   color: #b6b7b9;
 }
 
-.form-submit:hover, .back:focus {
+.form-submit:hover, .back:hover {
   background-color: #b6b7b9;
   color: #292929;
 }

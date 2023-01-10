@@ -97,7 +97,7 @@
   color: #b6b7b9;
 }
 
-.form-submit:hover, .back:focus {
+.form-submit:hover, .back:hover {
   background-color: #b6b7b9;
   color: #292929;
 }
@@ -201,6 +201,12 @@ form input {
   outline: none;
   border-radius: 15px;
   padding: .3em;
+}
+
+form label {
+  color: #b6b7b9;
+  margin-bottom: .2em;
+  width: 100%;
 }
 
 .up-button {
